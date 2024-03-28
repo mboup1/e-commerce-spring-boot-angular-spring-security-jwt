@@ -1,0 +1,113 @@
+package com.dame.ecommece.service;
+
+import com.dame.ecommece.entity.Basket;
+import com.dame.ecommece.entity.BasketItem;
+import com.dame.ecommece.entity.Product;
+import com.dame.ecommece.repository.BasketItemRepository;
+import com.dame.ecommece.repository.BasketRepository;
+import com.dame.ecommece.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Iterator;
+
+@Service
+public class BasketService {
+
+    @Autowired
+    private BasketRepository basketRepository;
+
+    @Autowired
+    private BasketItemRepository basketItemRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    public Basket addBasket(String nameBasket) {
+        Basket newBasket = new Basket();
+        newBasket.setNameBasket(nameBasket);
+        return basketRepository.save(newBasket);
+    }
+
+
+    public Basket loadBasketById(Long basketId) {
+        return basketRepository.findById(basketId)
+                .orElseThrow(() -> new RuntimeException("Basket not found"));
+    }
+
+    public void addItemToBasket(Long basketId, Long productId, int quantity) {
+        Basket basket = loadBasketById(basketId);
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        // Vérifier si le produit existe déjà dans le panier
+        BasketItem existingItem = basket.getItems().stream()
+                .filter(item -> item.getProduct().getIdProd().equals(productId))
+                .findFirst()
+                .orElse(null);
+
+        if (existingItem != null) {
+            // Mettre à jour la quantité de l'élément existant
+            existingItem.setQuantity(existingItem.getQuantity() + quantity);
+        } else {
+            // Ajouter un nouvel élément au panier
+            BasketItem newItem = new BasketItem();
+            newItem.setProduct(product);
+            newItem.setQuantity(quantity);
+            newItem.setBasket(basket);
+            basket.getItems().add(newItem);
+
+            System.out.println("newItem :"+ newItem);
+            basketItemRepository.save(newItem);
+        }
+
+        // Mettre à jour le panier dans la base de données
+        basketRepository.save(basket);
+    }
+
+    public void removeItemFromBasket(Long basketId, Long productId, int quantity) {
+        Basket basket = loadBasketById(basketId);
+
+        // Recherche de l'élément correspondant dans le panier
+        BasketItem existingItem = basket.getItems().stream()
+                .filter(item -> item.getProduct().getIdProd().equals(productId))
+                .findFirst()
+                .orElse(null);
+        System.out.println("existingItem : "+ existingItem);
+
+        if (existingItem != null) {
+            int updatedQuantity = existingItem.getQuantity() - quantity;
+            if (updatedQuantity <= 0) {
+                // Si la quantité mise à jour est inférieure ou égale à zéro, supprimer l'élément du panier
+                basket.getItems().remove(existingItem);
+                // Supprimer l'élément de la base de données
+                basketItemRepository.delete(existingItem);
+            } else {
+                // Mettre à jour la quantité de l'élément
+                existingItem.setQuantity(updatedQuantity);
+                // Mettre à jour l'élément dans la base de données
+                basketItemRepository.save(existingItem);
+            }
+        } else {
+            // L'élément n'existe pas dans le panier
+            throw new RuntimeException("Item not found in the basket");
+        }
+
+        // Mettre à jour le panier dans la base de données
+        basketRepository.save(basket);
+    }
+
+
+    public double calculateTotalPrice(Long basketId) {
+        Basket basket = loadBasketById(basketId);
+        double totalPrice = 0.0;
+
+        // Calculer le prix total en multipliant le prix de chaque produit par sa quantité dans le panier
+        for (BasketItem item : basket.getItems()) {
+            totalPrice += item.getProduct().getPrice() * item.getQuantity();
+        }
+
+        return totalPrice;
+    }
+}
+

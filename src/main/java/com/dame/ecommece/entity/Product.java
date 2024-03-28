@@ -15,7 +15,7 @@ public class Product {
 
     private String nameProd;
     private double price;
-    private int quantity;
+//    private int quantity;
     private Date date;
 
     @ManyToOne
@@ -25,10 +25,10 @@ public class Product {
     public Product() {
     }
 
-    public Product(String nameProd, double price, int quantity, Date date) {
+    public Product(String nameProd, double price, Date date) {
         this.nameProd = nameProd;
         this.price = price;
-        this.quantity = quantity;
+//        this.quantity = quantity;
         this.date = date;
     }
 
@@ -56,13 +56,9 @@ public class Product {
         this.price = price;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+//    public int getQuantity() {return quantity;}
+//
+//    public void setQuantity(int quantity) {this.quantity = quantity; }
 
     public Date getDate() {
         return date;
@@ -87,7 +83,7 @@ public class Product {
                 "idProd=" + idProd +
                 ", nameProd='" + nameProd + '\'' +
                 ", price=" + price +
-                ", quantity=" + quantity +
+//                ", quantity=" + quantity +
                 ", date=" + date +
                 '}';
     }
