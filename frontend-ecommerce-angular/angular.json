@@ -5,7 +5,17 @@
   "projects": {
     "frontend-ecommerce-angular": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "standalone": false
+        },
+        "@schematics/angular:directive": {
+          "standalone": false
+        },
+        "@schematics/angular:pipe": {
+          "standalone": false
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -93,6 +103,6 @@
     }
   },
   "cli": {
-    "analytics": "84d0ba7a-1591-4b63-8bb7-0e06402988e0"
+    "analytics": false
   }
 }
