@@ -1,19 +1,19 @@
 package com.dame.ecommece;
 
-import com.dame.ecommece.entity.Basket;
-import com.dame.ecommece.entity.Category;
-import com.dame.ecommece.entity.Product;
-import com.dame.ecommece.repository.BasketRepository;
-import com.dame.ecommece.repository.CategoryRepository;
-import com.dame.ecommece.repository.ProductRepository;
+import com.dame.ecommece.entity.*;
+import com.dame.ecommece.enums.ClientState;
+import com.dame.ecommece.enums.OrderState;
+import com.dame.ecommece.repository.*;
+import com.dame.ecommece.service.ClientService;
+import com.dame.ecommece.service.OrderService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+//import org.springframework.context.annotation.Bean;
+//import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 @SpringBootApplication
 public class ECommeceApplication {
@@ -25,7 +25,13 @@ public class ECommeceApplication {
 	private CategoryRepository categoryRepository;
 
 	@Autowired
+	private ClientService clientService;
+
+	@Autowired
 	private BasketRepository basketRepository;
+
+	@Autowired
+	private OrderService orderService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ECommeceApplication.class, args);
@@ -55,10 +61,35 @@ public class ECommeceApplication {
 		productRepository.save(product2);
 		productRepository.save(product3);
 
+			// Ajouter le client par défaut
+			Client initialClient = new Client("Amazon","Jeff","Bezos","jeff@jeff.com","06568584444","124 Amazon",					"456",
+					"San Francisco",
+					"USA",
+					ClientState.ACTIVE
+			);
+
+			// Sauvegarder le client initial
+			clientService.createClient(initialClient);
 
 			// Créer un panier initial
 			Basket basket = new Basket("Panier");
 			basketRepository.save(basket);
+
+			//Créer une commande  initiale
+			Order order =new Order(1L, OrderState.CONFIRMED);
+			orderService.createOrder(order);
+
+//			//Ajouter un article dans le panier
+//			// Appeler l'API pour ajouter un article dans le panier
+//			String addItemUrl = "http://localhost:8080/api/basket/1/items?basketId=1&productId=2&quantity=3";
+//			restTemplate().postForObject(addItemUrl, null, String.class);
+
 		}
 	}
+
+
+//	@Bean
+//	public RestTemplate restTemplate() {
+//		return new RestTemplate();
+//	}
 }

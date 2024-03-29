@@ -1,0 +1,56 @@
+# Backend (Spring Boot)
+
+## Gestion des utilisateurs :
+- Authentification (inscription, connexion, déconnexion)
+- Profils utilisateur (informations personnelles, historique des commandes, etc.)
+
+## Gestion des produits :
+- CRUD (Créer, Lire, Mettre à jour, Supprimer) pour les produits
+- Catégories et sous-catégories de produits
+- Gestion des stocks
+
+## Gestion des commandes :
+- Panier d'achat
+- Processus de commande (sélection d'articles, paiement, adresse de livraison, etc.)
+- Historique des commandes pour les utilisateurs enregistrés
+
+## Système de paiement :
+- Intégration de passerelles de paiement (ex: Stripe, PayPal)
+- Gestion des transactions et des factures
+
+## Gestion des commentaires et évaluations :
+- Les utilisateurs peuvent laisser des commentaires et des évaluations sur les produits
+- Modération des commentaires
+
+## Système de recherche et de filtre :
+- Recherche par mots-clés, catégories, etc.
+
+# Frontend (Angular)
+
+## Interface utilisateur attrayante et réactive :
+- Conception conviviale et intuitive
+- Utilisation de Bootstrap ou d'un autre framework CSS pour la mise en page et le style
+
+## Pages principales :
+- Page d'accueil avec les produits en vedette
+- Pages de catégories et de produits avec fonctionnalité de filtrage
+- Page de détail du produit avec possibilité d'ajout au panier
+- Panier d'achat avec fonctionnalité de modification et de suppression des produits
+- Processus de paiement avec formulaire de livraison et de paiement
+
+## Gestion de l'authentification :
+- Pages d'inscription, de connexion et de déconnexion
+- Profil utilisateur avec historique des commandes
+
+## Intégration de composants tiers :
+- Intégration de bibliothèques pour les fonctionnalités avancées (ex: carte interactive pour la localisation des magasins, chat en direct pour le support client, etc.)
+
+## Fonctionnalités avancées (optionnelles) :
+- Système de recommandation :
+    - Basé sur les achats précédents ou le comportement de navigation
+- Système de coupons et de promotions :
+    - Génération et application de codes promo
+    - Gestion des dates d'expiration et des conditions d'utilisation
+- Intégration de médias sociaux :
+    - Partage de produits sur les réseaux sociaux
+    - Connexion avec des comptes sociaux pour une expérience utilisateur simplifiée

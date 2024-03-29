@@ -2,6 +2,7 @@ package com.dame.ecommece.service;
 
 import com.dame.ecommece.entity.Basket;
 import com.dame.ecommece.entity.BasketItem;
+import com.dame.ecommece.entity.Order;
 import com.dame.ecommece.entity.Product;
 import com.dame.ecommece.repository.BasketItemRepository;
 import com.dame.ecommece.repository.BasketRepository;
@@ -9,7 +10,8 @@ import com.dame.ecommece.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BasketService {
@@ -23,6 +25,9 @@ public class BasketService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private OrderService orderService;
+
     public Basket addBasket(String nameBasket) {
         Basket newBasket = new Basket();
         newBasket.setNameBasket(nameBasket);
@@ -35,8 +40,15 @@ public class BasketService {
                 .orElseThrow(() -> new RuntimeException("Basket not found"));
     }
 
+    public List<BasketItem> getAllItems() {
+        return basketItemRepository.findAll();
+    }
+
     public void addItemToBasket(Long basketId, Long productId, int quantity) {
+
         Basket basket = loadBasketById(basketId);
+        Optional<Order> order = orderService.getOrderById(1L);
+        System.out.println("Order : " + order);
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
@@ -55,6 +67,7 @@ public class BasketService {
             newItem.setProduct(product);
             newItem.setQuantity(quantity);
             newItem.setBasket(basket);
+            newItem.setOrder(order.orElseThrow(() -> new RuntimeException("Order not found")));
             basket.getItems().add(newItem);
 
             System.out.println("newItem :"+ newItem);

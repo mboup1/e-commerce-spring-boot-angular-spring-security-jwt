@@ -2,6 +2,7 @@ package com.dame.ecommece.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Formula;
 
 import java.util.Date;
 
@@ -15,6 +16,7 @@ public class Product {
 
     private String nameProd;
     private double price;
+
 //    private int quantity;
     private Date date;
 

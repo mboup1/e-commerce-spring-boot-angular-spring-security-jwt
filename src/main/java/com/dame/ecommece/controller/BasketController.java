@@ -1,10 +1,15 @@
 package com.dame.ecommece.controller;
 
 import com.dame.ecommece.entity.Basket;
+import com.dame.ecommece.entity.BasketItem;
+import com.dame.ecommece.entity.Product;
+import com.dame.ecommece.repository.BasketItemRepository;
 import com.dame.ecommece.service.BasketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 // BasketController.java
 @RestController
@@ -13,6 +18,7 @@ public class BasketController {
 
     @Autowired
     private BasketService basketService;
+
 
     @PostMapping
     public ResponseEntity<Basket> addBasket(@RequestParam String nameBasket) {
