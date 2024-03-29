@@ -12,5 +12,5 @@ export interface Client {
   city: string;
   country: string;
   state: string; // "ACTIVE" or "INACTIVE"
-  orders: Order[];  // Assurez-vous d'avoir une interface Order définie si nécessaire
+  // orders: Order[];  // Assurez-vous d'avoir une interface Order définie si nécessaire
 }
