@@ -3,7 +3,6 @@ package com.dame.ecommece.service;
 import com.dame.ecommece.entity.BasketItem;
 import com.dame.ecommece.entity.Client;
 import com.dame.ecommece.entity.Order;
-import com.dame.ecommece.repository.BasketItemRepository;
 import com.dame.ecommece.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +29,7 @@ public class OrderService {
         return orderRepository.findById(id);
     }
 
-    public Order createOrder(Order order) {
+    public Order addOrder(Order order) {
         Long clientId = order.getIdClient();
         List<BasketItem> basketItemList = basketService.getAllItems();
         System.out.println("basketItemList : "+ basketItemList);

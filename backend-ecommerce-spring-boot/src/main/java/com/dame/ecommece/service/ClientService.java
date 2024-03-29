@@ -22,7 +22,7 @@ public class ClientService {
         return clientRepository.findById(id);
     }
 
-    public Client createClient(Client client) {
+    public Client addClient(Client client) {
 //        System.out.println("add client");
         return clientRepository.save(client);
     }

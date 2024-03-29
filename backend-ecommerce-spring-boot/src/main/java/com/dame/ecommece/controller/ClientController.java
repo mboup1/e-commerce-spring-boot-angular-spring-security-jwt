@@ -51,7 +51,7 @@ public class ClientController {
 //            return ResponseEntity.badRequest().body("Tous les champs doivent être remplis");
 //        }
 
-        Client createdClient = clientService.createClient(client);
+        Client createdClient = clientService.addClient(client);
         return ResponseEntity.ok(createdClient);
     }
 

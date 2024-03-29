@@ -69,7 +69,7 @@ public class ECommeceApplication {
 			);
 
 			// Sauvegarder le client initial
-			clientService.createClient(initialClient);
+			clientService.addClient(initialClient);
 
 			// Créer un panier initial
 			Basket basket = new Basket("Panier");
@@ -77,7 +77,7 @@ public class ECommeceApplication {
 
 			//Créer une commande  initiale
 			Order order =new Order(1L, OrderState.CONFIRMED);
-			orderService.createOrder(order);
+			orderService.addOrder(order);
 
 //			//Ajouter un article dans le panier
 //			// Appeler l'API pour ajouter un article dans le panier

@@ -28,13 +28,6 @@ public class BasketService {
     @Autowired
     private OrderService orderService;
 
-    public Basket addBasket(String nameBasket) {
-        Basket newBasket = new Basket();
-        newBasket.setNameBasket(nameBasket);
-        return basketRepository.save(newBasket);
-    }
-
-
     public Basket loadBasketById(Long basketId) {
         return basketRepository.findById(basketId)
                 .orElseThrow(() -> new RuntimeException("Basket not found"));
@@ -122,5 +115,11 @@ public class BasketService {
 
         return totalPrice;
     }
+
+//    public Basket addBasket(String nameBasket) {
+//        Basket newBasket = new Basket();
+//        newBasket.setNameBasket(nameBasket);
+//        return basketRepository.save(newBasket);
+//    }
 }
 

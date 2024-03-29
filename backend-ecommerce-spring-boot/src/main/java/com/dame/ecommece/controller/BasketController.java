@@ -19,13 +19,6 @@ public class BasketController {
     @Autowired
     private BasketService basketService;
 
-
-    @PostMapping
-    public ResponseEntity<Basket> addBasket(@RequestParam String nameBasket) {
-        Basket newBasket = basketService.addBasket(nameBasket);
-        return ResponseEntity.ok().body(newBasket);
-    }
-
     @GetMapping("/{basketId}")
     public ResponseEntity<Basket> getBasketById(@PathVariable Long basketId) {
         Basket basket = basketService.loadBasketById(basketId);
@@ -54,5 +47,11 @@ public class BasketController {
         double totalPrice = basketService.calculateTotalPrice(basketId);
         return ResponseEntity.ok().body(totalPrice);
     }
+
+    //    @PostMapping
+//    public ResponseEntity<Basket> addBasket(@RequestParam String nameBasket) {
+//        Basket newBasket = basketService.addBasket(nameBasket);
+//        return ResponseEntity.ok().body(newBasket);
+//    }
 }
 

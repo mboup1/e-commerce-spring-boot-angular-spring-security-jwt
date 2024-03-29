@@ -36,7 +36,7 @@ public class OrderController {
 //        }
 //            return ResponseEntity.badRequest().body("Tous les champs doivent être remplis et valides");
 
-        Order createdOrder = orderService.createOrder(order);
+        Order createdOrder = orderService.addOrder(order);
         return ResponseEntity.ok(createdOrder);
     }
 
