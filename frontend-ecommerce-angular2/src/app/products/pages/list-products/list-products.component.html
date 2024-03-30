@@ -1,0 +1,34 @@
+<div class="bg-white shadow p-4 rounded">
+  <h1 class="display-6 text-dark text-center">Liste des produits</h1>
+  <hr class="bg-dark text-dark">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Prix</th>
+        <th scope="col">Date</th>
+        <th scope="col">Catégorie</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products; let i = index">
+        <th>{{ product.idProd }}</th>
+        <td>{{ product.nameProd }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.date }}</td>
+        <td>{{ product.category.nameCat }}</td>
+        <td>
+          <button class="btn btn-primary me-2" (click)="getProduct(product.idProd)" data-bs-toggle="modal"
+            data-bs-target="#detailsProductModal">Infos...</button>
+          <!-- <button class="btn btn-primary me-2" type="button" [routerLink]="['/updateProduct']"
+                        [queryParams]="{ index: i, id: product.idProd, nameProd: product.nameProd, price: product.price, date: product.date, category: product.category }">Modifier
+                    </button> -->
+          <button class="btn btn-danger" type="button"
+            (click)="onDeleteProduct(product.idProd, product.nameProd)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
