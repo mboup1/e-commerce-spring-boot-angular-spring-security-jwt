@@ -8,7 +8,7 @@ describe('EditBasketComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EditBasketComponent]
+      declarations: [EditBasketComponent]
     })
     .compileComponents();
     

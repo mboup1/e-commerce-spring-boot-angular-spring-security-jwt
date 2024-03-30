@@ -16,7 +16,7 @@ export class ClientService {
   }
 
   addClient(client: Client): Observable<Client> {
-    return this.http.post<Client>(`${API_BASE_URL}/clients`,client);
+    return this.http.post<Client>(`${API_BASE_URL}/clients`, client);
   }
   deleteClient(id: number): Observable<Client> {
     return this.http.delete<Client>(`${API_BASE_URL}/clients/${id}`);
@@ -26,6 +26,6 @@ export class ClientService {
     return this.http.get<Client>(`${API_BASE_URL}/clients/${id}`);
   }
   updateClient(client: Client): Observable<Client> {
-    return this.http.put<Client>(`${API_BASE_URL}/clients/${client.id}`,client);
+    return this.http.put<Client>(`${API_BASE_URL}/clients/${client.id}`, client);
   }
 }
