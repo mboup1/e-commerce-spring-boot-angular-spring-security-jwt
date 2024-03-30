@@ -14,7 +14,7 @@ public class Basket {
     private String nameBasket;
 
     @OneToMany(mappedBy = "basket")
-    private List<BasketItem> items = new ArrayList<>();
+    private List<BasketItem> basketItems = new ArrayList<>();
 
     public Basket() {
     }
@@ -35,12 +35,12 @@ public class Basket {
         this.id = id;
     }
 
-    public List<BasketItem> getItems() {
-        return items;
+    public List<BasketItem> getBasketItems() {
+        return basketItems;
     }
 
-    public void setItems(List<BasketItem> items) {
-        this.items = items;
+    public void setBasketItems(List<BasketItem> basketItems) {
+        this.basketItems = basketItems;
     }
 
     public String getNameBasket() {
@@ -56,7 +56,7 @@ public class Basket {
         return "Basket{" +
                 "id=" + id +
                 ", nameBasket='" + nameBasket + '\'' +
-                ", items=" + items +
+                ", items=" + basketItems +
                 '}';
     }
 }
