@@ -53,14 +53,14 @@
             <tbody>
               <tr *ngFor="let item of order.basketItems">
                 <td>{{ item.product.nameProd }}</td>
-                <td>{{ item.product.price | currency:'EUR' }}</td>
+                <td>{{ item.product.price | spaceSeparated }} €</td>
                 <td>{{ item.quantity }}</td>
-                <td>{{ item.totalExcludeTaxe | currency:'EUR' }}</td>
-                <td>{{ item.totalWithTaxe | currency:'EUR' }}</td>
+                <td>{{ item.totalExcludeTaxe | spaceSeparated}} €</td>
+                <td>{{ item.totalWithTaxe | spaceSeparated }} €</td>
               </tr>
               <tr>
                 <td colspan="4" class="text-end fw-bold">Prix total:</td>
-                <td>{{ totalPrice | currency:'EUR' }}</td>
+                <td>{{ totalPrice ? (totalPrice | spaceSeparated) : '0' }} €</td>
               </tr>
 
             </tbody>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../../service/product.service';
 import { Product } from '../../../interfaces/product';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-products',
@@ -10,7 +11,10 @@ import { Product } from '../../../interfaces/product';
 export class ListProductsComponent {
   products: Product[] = [];
 
-  constructor(private productService: ProductService) { }
+  constructor(
+    private productService: ProductService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.getAllProducts();
@@ -30,15 +34,6 @@ export class ListProductsComponent {
     );
   }
 
-  getProduct(productId: number): void {
-    // Implémentez votre logique pour afficher les détails du produit, par exemple :
-    // this.router.navigate(['/details-product', productId]);
-  }
-
-  updateProduct(productId: number): void {
-    // Implémentez votre logique pour rediriger vers la page de mise à jour du produit, par exemple :
-    // this.router.navigate(['/update-product', productId]);
-  }
 
   onDeleteProduct(productId: number, productName: string): void {
     console.log(productId)
@@ -52,6 +47,17 @@ export class ListProductsComponent {
         console.error("Erreur lors de la suppression du produit:", error);
       });
     }
+  }
+
+  onEditProduct(productId: number): void {
+    console.log("productId : ", productId)
+    // Implémentez votre logique pour rediriger vers la page d'édition du produit, par exemple :
+    this.router.navigate(['/edit-product', productId]);
+  }
+
+  getProduct(productId: number): void {
+    // Implémentez votre logique pour afficher les détails du produit, par exemple :
+    // this.router.navigate(['/details-product', productId]);
   }
 
 }

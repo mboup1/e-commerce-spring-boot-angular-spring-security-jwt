@@ -25,6 +25,7 @@ import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ReplacePipe } from './pipes/replace.pipe';
+import { SpaceSeparatedPipe } from './pipes/space-separated.pipe';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ReplacePipe } from './pipes/replace.pipe';
     ListCategoriesComponent,
     HeaderComponent,
     ReplacePipe,
+    SpaceSeparatedPipe,
   ],
   imports: [
     BrowserModule,

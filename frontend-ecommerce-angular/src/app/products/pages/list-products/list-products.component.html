@@ -22,9 +22,7 @@
         <td>
           <button class="btn btn-primary me-2" (click)="getProduct(product.idProd)" data-bs-toggle="modal"
             data-bs-target="#detailsProductModal">Infos...</button>
-          <!-- <button class="btn btn-primary me-2" type="button" [routerLink]="['/updateProduct']"
-                        [queryParams]="{ index: i, id: product.idProd, nameProd: product.nameProd, price: product.price, date: product.date, category: product.category }">Modifier
-                    </button> -->
+                      <button class="btn btn-warning me-2" (click)="onEditProduct(product.idProd)">Modifier</button>
           <button class="btn btn-danger" type="button"
             (click)="onDeleteProduct(product.idProd, product.nameProd)">Supprimer</button>
         </td>
