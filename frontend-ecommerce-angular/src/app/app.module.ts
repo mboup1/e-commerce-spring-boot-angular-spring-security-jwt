@@ -24,6 +24,7 @@ import { ListCategoriesComponent } from './categories/pages/list-categories/list
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ReplacePipe } from './pipes/replace.pipe';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     EditCategorieComponent,
     AddCategorieComponent,
     ListCategoriesComponent,
-    HeaderComponent
+    HeaderComponent,
+    ReplacePipe,
   ],
   imports: [
     BrowserModule,

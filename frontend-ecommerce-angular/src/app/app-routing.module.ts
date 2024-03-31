@@ -6,8 +6,8 @@ import { ListOrdersComponent } from './orders/pages/list-orders/list-orders.comp
 import { AddClientComponent } from './clients/pages/add-client/add-client.component';
 
 const routes: Routes = [
-  { path: 'clients', component: ListClientsComponent },
   { path: 'products', component: ListProductsComponent },
+  { path: 'clients', component: ListClientsComponent },
   { path: 'orders', component: ListOrdersComponent },
   { path: 'addClient', component: AddClientComponent },
 ];

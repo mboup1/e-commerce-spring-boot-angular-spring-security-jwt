@@ -1,1 +1,73 @@
-<p>list-orders works!</p>
+<div class="bg-white shadow p-4 rounded">
+  <h1 class="display-6 text-dark text-center">Liste des commandes</h1>
+  <hr class="bg-dark text-dark">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID de la commande</th>
+        <th scope="col">Nom client</th>
+        <th scope="col">État de la commande</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="orders">
+        <tr *ngFor="let order of orders">
+          <td>{{ order.id }}</td>
+          <td>{{ order.client.lastName}}</td>
+          <td>{{ order.state }}</td>
+          <td>
+            <!-- Boutons d'action -->
+            <button class="btn btn-primary me-2" (click)="viewOrderDetails(order.id)">Détails</button>
+            <button class="btn btn-warning me-2" (click)="editOrder(order.id)">Modifier</button>
+            <!-- <button class="btn btn-danger" (click)="deleteOrder(order.id)">Supprimer</button> -->
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+
+  <!-- Détails de chaque commande avec les articles associés -->
+  <ng-container *ngIf="orders">
+    <div *ngFor="let order of orders">
+      <div class="invoice">
+        <div class="header">
+          <h2>Facture N° {{ order.id }}</h2>
+          <p>Date de commande: {{ order.date | date: 'dd/MM/yyyy' }}</p>
+          <p>Client: {{ order.client.companyName }}</p>
+          <p>Email: {{ order.client.email }}</p>
+          <p>Téléphone: {{ order.client.phone }}</p>
+        </div>
+        <div class="items">
+          <h3>Articles:</h3>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Nom du produit</th>
+                <th>Prix unitaire</th>
+                <th>Quantité</th>
+                <th>Total hors taxe</th>
+                <th>Total avec taxe</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of order.basketItems">
+                <td>{{ item.product.nameProd }}</td>
+                <td>{{ item.product.price | currency:'EUR' }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.totalExcludeTaxe | currency:'EUR' }}</td>
+                <td>{{ item.totalWithTaxe | currency:'EUR' }}</td>
+              </tr>
+              <tr>
+                <td colspan="4" class="text-end fw-bold">Prix total:</td>
+                <td>{{ totalPrice | currency:'EUR' }}</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+</div>

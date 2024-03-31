@@ -1,3 +1,5 @@
+import { Order } from "./order";
+
 export interface Client {
   id: number;
   companyName: string;
@@ -10,5 +12,5 @@ export interface Client {
   city: string;
   country: string;
   state: string; // "ACTIVE" or "INACTIVE"
-  // orders: Order[];  // Assurez-vous d'avoir une interface Order définie si nécessaire
+  orders: Order[];  // Assurez-vous d'avoir une interface Order définie si nécessaire
 }

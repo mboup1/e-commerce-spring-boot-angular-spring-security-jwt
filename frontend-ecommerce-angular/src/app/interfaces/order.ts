@@ -5,8 +5,9 @@ export interface Order {
   id: number;
   idClient: number;
   state: OrderState;
-  client?: Client; 
-  items: BasketItem[];
+  client: Client;
+  date: string; // Ajout de la propriété de date
+  basketItems: BasketItem[];
 }
 
 export enum OrderState {

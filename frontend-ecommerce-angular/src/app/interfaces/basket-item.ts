@@ -7,5 +7,7 @@ export interface BasketItem {
   basket?: Basket;
   product: Product;
   quantity: number;
+  totalExcludeTaxe: number;
+  totalWithTaxe: number;
   order?: Order;
 }
