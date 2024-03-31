@@ -4,6 +4,7 @@ import com.dame.ecommece.enums.OrderState;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -19,13 +20,16 @@ public class Order {
 //    @Column(columnDefinition = "int4")
     private OrderState state;
 
+    @Temporal(TemporalType.TIMESTAMP) // Annotation pour spécifier le type de la date
+    private Date date; // Champ de type Date pour stocker la date de la commande
+
     @ManyToOne
     @JoinColumn(name = "client_id")
 //    @JsonIgnore
     private Client client;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<BasketItem> items = new ArrayList<>();
+    private List<BasketItem> basketItems = new ArrayList<>();
 
     public Order() { }
 
@@ -54,9 +58,17 @@ public class Order {
 
     public void setIdClient(Long idClient) {this.idClient = idClient;}
 
-    public List<BasketItem> getItems() {return items;}
+    public Date getDate() {
+        return date;
+    }
 
-    public void setItems(List<BasketItem> items) {this.items = items;}
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public List<BasketItem> getBasketItems() {return basketItems;}
+
+    public void setBasketItems(List<BasketItem> basketItems) {this.basketItems = basketItems;}
 
     @Override
     public String toString() {
@@ -64,6 +76,7 @@ public class Order {
                 "id=" + id +
                 ", clientId=" + idClient +
                 ", state=" + state +
+                ", date=" + date +
 //                ", client=" + client +
                 '}';
     }

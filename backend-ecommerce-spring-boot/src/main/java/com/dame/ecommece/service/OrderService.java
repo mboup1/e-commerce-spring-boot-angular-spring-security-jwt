@@ -7,6 +7,7 @@ import com.dame.ecommece.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,7 +39,9 @@ public class OrderService {
         if (clientOptional.isPresent()) {
             Client client = clientOptional.get();
             order.setClient(client);
-            order.setItems(basketItemList);
+            order.setBasketItems(basketItemList);
+
+            order.setDate(new Date());
 
             return orderRepository.save(order);
         } else {

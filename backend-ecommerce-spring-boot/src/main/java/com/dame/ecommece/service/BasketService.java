@@ -110,7 +110,7 @@ public class BasketService {
 
         // Calculer le prix total en multipliant le prix de chaque produit par sa quantité dans le panier
         for (BasketItem item : basket.getBasketItems()) {
-            totalPrice += item.getProduct().getPrice() * item.getQuantity();
+            totalPrice += item.getProduct().getPrice() * item.getQuantity()*1.2;
         }
 
         return totalPrice;
