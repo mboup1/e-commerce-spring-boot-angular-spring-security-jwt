@@ -3,6 +3,7 @@ import { OrderService } from '../../service/order.service';
 import { Order } from '../../../interfaces/order';
 import { BasketService } from '../../../baskets/service/basket.service';
 import { Basket } from '../../../interfaces/basket';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-orders',
@@ -16,6 +17,8 @@ export class ListOrdersComponent implements OnInit {
   constructor(
     private orderService: OrderService,
     private basketService: BasketService,
+    private router: Router,
+
   ) { }
 
   ngOnInit(): void {
@@ -28,7 +31,7 @@ export class ListOrdersComponent implements OnInit {
     this.orderService.getAllOrders().subscribe({
       next: (orders: Order[]) => {
         this.orders = orders;
-        console.log("orders: ", orders);
+        // console.log("orders: ", orders);
       },
       error: (error) => {
         console.error('Error fetching orders:', error);
@@ -40,7 +43,7 @@ export class ListOrdersComponent implements OnInit {
     this.basketService.getTotalPrice().subscribe({
       next: (totalPrice: number) => { // Modifier le type de retour ici aussi
         this.totalPrice = totalPrice;
-        console.log("Total Price: ", totalPrice);
+        // console.log("Total Price: ", totalPrice);
       },
       error: (error) => {
         console.error('Error fetching total price:', error);
@@ -53,6 +56,9 @@ export class ListOrdersComponent implements OnInit {
   }
 
   editOrder(orderId: number): void {
+    console.log("productId : ", orderId)
+    // Implémentez votre logique pour rediriger vers la page d'édition du produit, par exemple :
+    this.router.navigate(['/edit-order', orderId]);
 
   }
 

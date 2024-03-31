@@ -17,11 +17,11 @@ export class ListClientsComponent {
   }
 
   getAllClients(): void {
-    this.clientService.getAllCLients().subscribe(
+    this.clientService.getAllClients().subscribe(
       {
         next: (clients: Client[]) => {
           this.clients = clients;
-          console.log("clients : ", clients);
+          // console.log("clients : ", clients);
         },
         error: (error) => {
           console.error('Error fetching clients:', error);

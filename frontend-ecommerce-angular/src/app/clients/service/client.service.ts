@@ -11,7 +11,7 @@ export class ClientService {
 
   constructor(private http: HttpClient) { }
 
-  getAllCLients(): Observable<Client[]> {
+  getAllClients(): Observable<Client[]> {
     return this.http.get<Client[]>(`${API_BASE_URL}/clients`);
   }
 

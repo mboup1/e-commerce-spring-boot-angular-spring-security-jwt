@@ -96,4 +96,9 @@ export class EditProductComponent implements OnInit {
       );
     }
   }
+
+  cancelUpdate(): void {
+    // Naviguer vers la liste des produits
+    this.router.navigate(['/products']);
+  }
 }

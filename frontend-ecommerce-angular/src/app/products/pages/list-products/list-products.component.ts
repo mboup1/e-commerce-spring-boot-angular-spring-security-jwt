@@ -25,7 +25,7 @@ export class ListProductsComponent {
       {
         next: (products: Product[]) => {
           this.products = products;
-          console.log("products : ", products);
+          // console.log("products : ", products);
         },
         error: (error) => {
           console.error('Error fetching products:', error);

@@ -23,9 +23,12 @@
             <option *ngFor="let category of categories" [value]="category.idCat">{{ category.nameCat }}</option>
           </select>
         </div>
-        <div class="d-flex">
-          <button class="btn btn-success mx-auto" type="submit" [disabled]="!editProductForm.valid">
-            Enregistrer les modifications
+        <div class="d-flex justify-content-center text-center">
+          <button class="btn btn-success mx-2" type="submit" [disabled]="!editProductForm.valid">
+            Enregistrer
+          </button>
+          <button class="btn btn-secondary mx-2" type="button" (click)="cancelUpdate()">
+            Annuler
           </button>
         </div>
       </form>

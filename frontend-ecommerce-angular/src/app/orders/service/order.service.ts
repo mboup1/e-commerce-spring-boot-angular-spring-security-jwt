@@ -27,7 +27,13 @@ export class OrderService {
     return this.http.get<Order>(`${API_BASE_URL}/orders/${id}`);
   }
 
-  updateOrder(order: Order): Observable<Order> {
-    return this.http.put<Order>(`${API_BASE_URL}/orders/${order.id}`, order);
+  // updateOrder(order: Order): Observable<Order> {
+  //   return this.http.put<Order>(`${API_BASE_URL}/orders/${order.id}`, order);
+  // }
+
+  // Méthode pour mettre à jour une commande
+  updateOrder(id: number, orderData: { idClient: number, state: string }): Observable<Order> {
+    const url = `${API_BASE_URL}/orders/${id}`;
+    return this.http.put<Order>(url, orderData);
   }
 }
