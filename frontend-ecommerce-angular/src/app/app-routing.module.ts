@@ -10,13 +10,13 @@ import { ListBasketsComponent } from './baskets/pages/list-baskets/list-baskets.
 
 const routes: Routes = [
   { path: 'products', component: ListProductsComponent },
-  { path: 'clients', component: ListClientsComponent },
-  { path: 'orders', component: ListOrdersComponent },
-  { path: 'basket', component: ListBasketsComponent },
-
+  { path: '', component: ListProductsComponent },
   { path: 'addProduct', component: AddProductComponent },
   { path: 'edit-product/:id', component: EditProductComponent },
+  { path: 'orders', component: ListOrdersComponent },
   { path: 'edit-order/:id', component: EditOrderComponent },
+  { path: 'basket', component: ListBasketsComponent },
+  { path: 'clients', component: ListClientsComponent },
 ];
 
 @NgModule({

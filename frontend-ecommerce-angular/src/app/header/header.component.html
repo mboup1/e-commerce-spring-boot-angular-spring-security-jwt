@@ -1,27 +1,25 @@
 <div class="container">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light pagination">
+  <nav class="navbar navbar-expand-md navbar-light bg-light pagination">
     <a class="navbar-brand page-link" [routerLink]="['/products']">Gestion des produits</a>
     <!-- <a class="navbar-brand page-link" [routerLink]="['/clients']">Gestion des clients</a> -->
-    <a class="navbar-brand page-link" [routerLink]="['/orders']">Gestion des commandes</a>
     <a class="navbar-brand page-link" [routerLink]="['/addProduct']">Ajouter un produit</a>
+    <a class="navbar-brand page-link" [routerLink]="['/orders']">Gestion des commandes</a>
 
-    <!-- Panier -->
-    <a class="nav-link ml-auto" [routerLink]="['/basket']">
-      <i class="bi bi-cart"></i> Panier
-    </a>
-
-    <!-- <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item btn btn-outline-success rounded-pill me-2">
+          <li>
+                <a class="navbar-brand page-link" [routerLink]="['/basket']">Panier <i class="fas fa-shopping-cart"> </i> </a>
+          </li>
+          <!-- <li class="nav-item btn btn-outline-success rounded-pill me-2">
             <a class="nav-link" [routerLink]="['/clients']">Se connecter</a>
-          </li>
-          <li class="nav-item btn btn-primary rounded-pill me-2">
+          </li> -->
+          <!-- <li class="nav-item btn btn-primary rounded-pill me-2">
             <a class="nav-link text-white mx-2" [routerLink]="['/clients']">S'incrire</a>
-          </li>
-          <li class="nav-item btn btn-danger rounded-pill">
+          </li> -->
+          <!-- <li class="nav-item btn btn-danger rounded-pill">
             <a class="nav-link text-white text-dange">Déconnexion</a>
-          </li>
+          </li> -->
         </ul>
-      </div> -->
+      </div>
   </nav>
 </div>

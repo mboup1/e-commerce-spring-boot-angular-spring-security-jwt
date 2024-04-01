@@ -1,1 +1,33 @@
-<p>list-baskets works!</p>
+<!-- <p>edit-basket works!</p> -->
+<div *ngIf="basket" class="bg-white shadow p-4 rounded">
+  <h1 class="display-6 text-dark text-center">Votre panier</h1>
+  <hr class="bg-dark text-dark">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID produit</th>
+        <th scope="col">Nom du produit</th>
+        <th scope="col">Quantité</th>
+        <th scope="col">Prix unitaire</th>
+        <th scope="col">Total TTC</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of basket.basketItems">
+        <td>{{ item.product.idProd }}</td>
+        <td>{{ item.product.nameProd }}</td>
+        <td>
+          <button class="btn btn-danger me-2" (click)="removeItemFromBasket(item.product.idProd, 1)">-</button>
+          {{ item.quantity }}
+          <button class="btn btn-primary ms-2" (click)="addItemToBasket(item.product.idProd, 1)">+</button>
+        </td>
+        <td>{{ item.product.price }} €</td>
+        <td>{{ item.totalWithTaxe }} €</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="text-end me-5">Total du panier : {{ totalPrice ? (totalPrice | spaceSeparated) : '0' }} €</p>
+    <button class="btn btn-success" (click)="passerCommande()">Passer la commande</button>
+
+</div>
+

@@ -23,7 +23,7 @@ export class ListOrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllOrders();
-    this.getTotalPrice(); // Appeler la méthode pour récupérer le prix total
+    this.getTotalPrice();
 
   }
 
