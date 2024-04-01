@@ -11,12 +11,12 @@ public class BasketItem {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "basket_id")
     @JsonIgnore
     private Basket basket;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-
     private Product product;
 
     private int quantity;

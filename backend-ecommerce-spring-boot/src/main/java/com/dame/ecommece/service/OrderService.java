@@ -63,6 +63,7 @@ public class OrderService {
 //            existingOrder.setNbDays(updatedOrder.getNbDays());
 //            existingOrder.setUnitPrice(updatedOrder.getUnitPrice());
             existingOrder.setState(updatedOrder.getState());
+            updatedOrder.setDate(new Date());
 
             return Optional.of(orderRepository.save(existingOrder));
         } else {

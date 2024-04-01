@@ -8,7 +8,10 @@ import com.dame.ecommece.repository.BasketItemRepository;
 import com.dame.ecommece.repository.BasketRepository;
 import com.dame.ecommece.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,7 +40,10 @@ public class BasketService {
         return basketItemRepository.findAll();
     }
 
-    public void addItemToBasket(Long basketId, Long productId, int quantity) {
+    public BasketItem addItemToBasket(BasketItem basketItem) {
+        Long basketId = 1L;
+        Long productId = basketItem.getProduct().getIdProd();
+        int quantity = basketItem.getQuantity();
 
         Basket basket = loadBasketById(basketId);
         Optional<Order> order = orderService.getOrderById(1L);
@@ -50,10 +56,14 @@ public class BasketService {
                 .filter(item -> item.getProduct().getIdProd().equals(productId))
                 .findFirst()
                 .orElse(null);
+//        BasketItem newItem = new BasketItem();
 
         if (existingItem != null) {
             // Mettre à jour la quantité de l'élément existant
             existingItem.setQuantity(existingItem.getQuantity() + quantity);
+            // Mettre à jour l'élément dans la base de données
+            basketItemRepository.save(existingItem);
+            return existingItem;
         } else {
             // Ajouter un nouvel élément au panier
             BasketItem newItem = new BasketItem();
@@ -63,15 +73,17 @@ public class BasketService {
             newItem.setOrder(order.orElseThrow(() -> new RuntimeException("Order not found")));
             basket.getBasketItems().add(newItem);
 
-            System.out.println("newItem :"+ newItem);
+            System.out.println("newItem :" + newItem);
             basketItemRepository.save(newItem);
+            return newItem;
         }
-
-        // Mettre à jour le panier dans la base de données
-        basketRepository.save(basket);
     }
 
-    public void removeItemFromBasket(Long basketId, Long productId, int quantity) {
+    public void removeItemFromBasket(BasketItem basketItem) {
+        Long basketId = 1L;
+        Long productId = basketItem.getProduct().getIdProd();
+        int quantity = basketItem.getQuantity();
+
         Basket basket = loadBasketById(basketId);
 
         // Recherche de l'élément correspondant dans le panier
@@ -79,7 +91,7 @@ public class BasketService {
                 .filter(item -> item.getProduct().getIdProd().equals(productId))
                 .findFirst()
                 .orElse(null);
-        System.out.println("existingItem : "+ existingItem);
+        System.out.println("existingItem : " + existingItem);
 
         if (existingItem != null) {
             int updatedQuantity = existingItem.getQuantity() - quantity;
@@ -110,16 +122,51 @@ public class BasketService {
 
         // Calculer le prix total en multipliant le prix de chaque produit par sa quantité dans le panier
         for (BasketItem item : basket.getBasketItems()) {
-            totalPrice += item.getProduct().getPrice() * item.getQuantity()*1.2;
+            totalPrice += item.getProduct().getPrice() * item.getQuantity() * 1.2;
         }
 
         return totalPrice;
     }
 
+
 //    public Basket addBasket(String nameBasket) {
 //        Basket newBasket = new Basket();
 //        newBasket.setNameBasket(nameBasket);
 //        return basketRepository.save(newBasket);
+//    }
+
+    //    public void addItemToBasket(Long basketId, Long productId, int quantity) {
+//
+//        Basket basket = loadBasketById(basketId);
+//        Optional<Order> order = orderService.getOrderById(1L);
+//        System.out.println("Order : " + order);
+//        Product product = productRepository.findById(productId)
+//                .orElseThrow(() -> new RuntimeException("Product not found"));
+//
+//        // Vérifier si le produit existe déjà dans le panier
+//        BasketItem existingItem = basket.getBasketItems().stream()
+//                .filter(item -> item.getProduct().getIdProd().equals(productId))
+//                .findFirst()
+//                .orElse(null);
+//
+//        if (existingItem != null) {
+//            // Mettre à jour la quantité de l'élément existant
+//            existingItem.setQuantity(existingItem.getQuantity() + quantity);
+//        } else {
+//            // Ajouter un nouvel élément au panier
+//            BasketItem newItem = new BasketItem();
+//            newItem.setProduct(product);
+//            newItem.setQuantity(quantity);
+//            newItem.setBasket(basket);
+//            newItem.setOrder(order.orElseThrow(() -> new RuntimeException("Order not found")));
+//            basket.getBasketItems().add(newItem);
+//
+//            System.out.println("newItem :" + newItem);
+//            basketItemRepository.save(newItem);
+//        }
+//
+//        // Mettre à jour le panier dans la base de données
+//        basketRepository.save(basket);
 //    }
 }
 

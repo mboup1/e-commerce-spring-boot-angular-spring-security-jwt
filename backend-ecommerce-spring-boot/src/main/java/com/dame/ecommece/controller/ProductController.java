@@ -46,15 +46,16 @@ public class ProductController {
             return ResponseEntity.ok(updateProduct);
 
         } else {
-            return ResponseEntity.badRequest().body("No products with this id !");        }
+            return ResponseEntity.badRequest().body("No products with this id !");
+        }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         if (productService.deleteProduct(id)) {
-            return ResponseEntity.ok("Product successfully removed !");
+            return ResponseEntity.noContent().build();
         } else {
-            return ResponseEntity.ok("No products with this id !");
+            return ResponseEntity.noContent().build();
         }
 
     }
