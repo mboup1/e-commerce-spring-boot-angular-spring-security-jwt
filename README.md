@@ -18,23 +18,19 @@ spring.jpa.hibernate.ddl-auto=update
 spring.main.allow-circular-references=true
 ```
 
-
 ## Frontend Angular
 
 ## Homepage
 
-![Homepage](frontend-ecommerce-angular\src\app\resources\Homepage-e-commerce-dame.jpg)
-
+![Homepage](resources\Homepage-e-commerce-dame.jpg)
 
 ## Online store basket
 
-![Basket](frontend-ecommerce-angular\src\app\resources\Basket.jpg)
-
+![Basket](resources\Basket.jpg)
 
 ## order management
 
-![Order](frontend-ecommerce-angular\src\app\resources\Order.jpg)
-
+![Order](resources\Order.jpg)
 
 ```markdown
 ## Prerequisites
@@ -45,22 +41,25 @@ spring.main.allow-circular-references=true
 - Spring Boot
 ```
 
-```markdown
+````markdown
 ## Getting Started
 
 1. Clone the repository:
 
    git clone https://github.com/mboup1/e-commerce-spring-boot-angular.git
 
-
 ```markdown
 ## Development server
 
 1. **Install Dependencies:**
+
    - Run `npm install` to install the project dependencies.
 
 2. **Run `ng serve`:**
    - Execute `ng serve --open` to start a dev server and open the application in your default browser. The app will reload if you make any changes to the source files.
 ```
+````
 
 ```markdown
+
+```
