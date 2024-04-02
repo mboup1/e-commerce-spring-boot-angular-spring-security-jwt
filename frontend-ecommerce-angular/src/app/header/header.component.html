@@ -6,20 +6,23 @@
     <a class="navbar-brand page-link" [routerLink]="['/orders']">Gestion des commandes</a>
 
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li>
-                <a class="navbar-brand page-link" [routerLink]="['/basket']">Panier <i class="fas fa-shopping-cart"> </i> </a>
-          </li>
-          <!-- <li class="nav-item btn btn-outline-success rounded-pill me-2">
+      <ul class="navbar-nav ms-auto">
+        <li (click)="reloadBasket()">
+          <a class="navbar-brand page-link" [routerLink]="['/basket']">
+            Panier <i class="fas fa-shopping-cart"></i>
+            <span class="badge bg-danger rounded-circle">{{ basket?.totalItems }}</span>
+          </a>
+        </li>
+        <!-- <li class="nav-item btn btn-outline-success rounded-pill me-2">
             <a class="nav-link" [routerLink]="['/clients']">Se connecter</a>
           </li> -->
-          <!-- <li class="nav-item btn btn-primary rounded-pill me-2">
+        <!-- <li class="nav-item btn btn-primary rounded-pill me-2">
             <a class="nav-link text-white mx-2" [routerLink]="['/clients']">S'incrire</a>
           </li> -->
-          <!-- <li class="nav-item btn btn-danger rounded-pill">
+        <!-- <li class="nav-item btn btn-danger rounded-pill">
             <a class="nav-link text-white text-dange">Déconnexion</a>
           </li> -->
-        </ul>
-      </div>
+      </ul>
+    </div>
   </nav>
 </div>

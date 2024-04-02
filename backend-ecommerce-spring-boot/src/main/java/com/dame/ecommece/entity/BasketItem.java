@@ -55,6 +55,7 @@ public class BasketItem {
 
     public double getTotalWithTaxe() {return product.getPrice() * quantity*1.2;}
 
+
     @Override
     public String toString() {
         return "BasketItem{" +

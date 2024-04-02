@@ -5,4 +5,5 @@ export interface Basket {
   nameBasket: string;
   totalPrice: number;
   basketItems: BasketItem[];
+  totalItems: number;
 }

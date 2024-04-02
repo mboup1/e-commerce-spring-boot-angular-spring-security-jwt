@@ -51,6 +51,17 @@ public class Basket {
         this.nameBasket = nameBasket;
     }
 
+    // Method to calculate the total number of items in the basket
+    public int getTotalItems() {
+        int totalItems = 0;
+        if (basketItems != null) {
+            for (BasketItem item : basketItems) {
+                totalItems += item.getQuantity();
+            }
+        }
+        return totalItems;
+    }
+
     @Override
     public String toString() {
         return "Basket{" +

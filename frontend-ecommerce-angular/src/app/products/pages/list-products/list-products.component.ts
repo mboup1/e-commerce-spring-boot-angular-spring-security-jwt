@@ -84,7 +84,7 @@ export class ListProductsComponent {
 
   createBasketItem(productID: number, quantity: number): BasketItem {
     const basketItem: BasketItem = {
-      basket: { id: 1, nameBasket: '', totalPrice: 0, basketItems: [] },
+      basket: { id: 1, nameBasket: '', totalItems: 0, totalPrice: 0, basketItems: [] },
       product: {
         idProd: productID,
         category: { idCat: 1, nameCat: "Category Name", descriptionCat: "Category Description" },
@@ -99,7 +99,7 @@ export class ListProductsComponent {
     };
     return basketItem;
   }
-  
+
 
   // getBasketById(): void {
   //   this.basketService.getBasketById(1).subscribe(

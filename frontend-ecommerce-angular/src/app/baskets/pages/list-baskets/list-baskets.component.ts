@@ -12,11 +12,14 @@ import { BasketItem } from '../../../interfaces/basket-item';
 export class ListBasketsComponent implements OnInit {
   basket!: Basket;
   totalPrice!: number;
+  totalItems: number = 0;
+
 
 
   constructor(
     private basketService: BasketService,
-    private router: Router
+    private router: Router,
+
   ) { }
 
   ngOnInit(): void {
@@ -25,11 +28,14 @@ export class ListBasketsComponent implements OnInit {
 
   }
 
+
+
   getBasketById(): void {
     this.basketService.getBasketById(1).subscribe(
       {
         next: (basket: Basket) => {
           this.basket = basket;
+
           // console.log("basket : ", basket);
         },
         error: (error) => {
@@ -38,6 +44,8 @@ export class ListBasketsComponent implements OnInit {
       }
     );
   }
+
+
 
   getTotalPrice(): void {
     this.basketService.getTotalPrice().subscribe({
@@ -56,7 +64,7 @@ export class ListBasketsComponent implements OnInit {
 
     this.basketService.addItemToBasket(basketItem).subscribe({
       next: (addedItem: BasketItem) => {
-        console.log('Item added to basket:', addedItem);
+        // console.log('Item added to basket:', addedItem);
         this.getBasketById();
         this.getTotalPrice();
       },
@@ -70,7 +78,7 @@ export class ListBasketsComponent implements OnInit {
   const basketItem: BasketItem = this.createBasketItem(productID, quantity);
   this.basketService.removeItemFromBasket(basketItem).subscribe({
     next: () => {
-      console.log('Item removed from basket successfully');
+      // console.log('Item removed from basket successfully');
       this.getBasketById();
       this.getTotalPrice();
     },
@@ -78,13 +86,13 @@ export class ListBasketsComponent implements OnInit {
       console.error('Error removing item from basket:', error);
     }
   });
-}
+  }
 
 
 
   createBasketItem(productID: number, quantity: number): BasketItem {
     const basketItem: BasketItem = {
-      basket: { id: 1, nameBasket: '', totalPrice: 0, basketItems: [] },
+      basket: { id: 1, nameBasket: '', totalPrice: 0, totalItems: 0, basketItems: [] },
       product: {
         idProd: productID,
         category: { idCat: 1, nameCat: "Category Name", descriptionCat: "Category Description" },
