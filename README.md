@@ -18,21 +18,23 @@ spring.jpa.hibernate.ddl-auto=update
 spring.main.allow-circular-references=true
 ```
 
-```markdown
+
 ## Frontend Angular
 
 ## Homepage
 
-![Homepage](frontend-ecommerce-angular/src/app/resources/Homepage-e-commerce-dame.jpg)
+![Homepage](frontend-ecommerce-angular\src\app\resources\Homepage-e-commerce-dame.jpg)
+
 
 ## Online store basket
 
-![Basket](frontend-ecommerce-angular/src/app/resources/Basket.jpg)
+![Basket](frontend-ecommerce-angular\src\app\resources\Basket.jpg)
 
-## Order management
 
-![Order](frontend-ecommerce-angular/src/app/resources/Order.jpg)
-```
+## order management
+
+![Order](frontend-ecommerce-angular\src\app\resources\Order.jpg)
+
 
 ```markdown
 ## Prerequisites
@@ -48,9 +50,8 @@ spring.main.allow-circular-references=true
 
 1. Clone the repository:
 
-   ```bash
    git clone https://github.com/mboup1/e-commerce-spring-boot-angular.git
-   ```
+
 
 ```markdown
 ## Development server
