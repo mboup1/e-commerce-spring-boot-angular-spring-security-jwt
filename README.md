@@ -22,15 +22,15 @@ spring.main.allow-circular-references=true
 
 ## Homepage
 
-![Homepage](resources\Homepage-e-commerce-dame.jpg)
+![Homepage](frontend-ecommerce-angular/src/app/resources/Homepage-e-commerce-dame.jpg)
 
 ## Online store basket
 
-![Basket](resources\Basket.jpg)
+![Basket](frontend-ecommerce-angular/src/app/resources/Basket.jpg)
 
 ## order management
 
-![Order](resources\Order.jpg)
+![Order](frontend-ecommerce-angular/src/app/resources/Order.jpg)
 
 ```markdown
 ## Prerequisites
