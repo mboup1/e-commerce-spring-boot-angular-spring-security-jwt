@@ -94,6 +94,8 @@ public class Product {
         this.basketItems = basketItems;
     }
 
+    public double getPriceItemWithTaxe() {return getPrice() *1.2;}
+
     @Override
     public String toString() {
         return "Product{" +

@@ -15,7 +15,12 @@
         <tr *ngFor="let order of orders">
           <td>{{ order.id }}</td>
           <td>{{ order.client.lastName}}</td>
-          <td>{{ order.state }}</td>
+          <td>
+            <span *ngIf="order.state === 'CANCELED'" class="text-danger">Annulée</span>
+            <span *ngIf="order.state === 'OPTION'">En option</span>
+            <span *ngIf="order.state === 'CONFIRMED'" class="text-success">Confirmée</span>
+          </td>
+
           <td>
             <!-- Boutons d'action -->
             <button class="btn btn-primary me-2" (click)="viewOrderDetails(order.id)">Détails</button>

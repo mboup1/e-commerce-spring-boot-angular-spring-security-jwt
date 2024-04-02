@@ -10,7 +10,7 @@
 
       <form [formGroup]="editOrderForm" (ngSubmit)="updateOrder()">
         <input type="hidden" formControlName="clientId">
-        
+
         <div class="form-group mb-3">
           <label for="orderState">État de la commande:</label>
           <select id="orderState" class="form-control" formControlName="state">

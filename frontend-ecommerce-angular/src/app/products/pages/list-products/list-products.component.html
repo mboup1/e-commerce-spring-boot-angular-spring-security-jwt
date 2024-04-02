@@ -7,7 +7,7 @@
         <th scope="col">ID</th>
         <th scope="col">Nom</th>
         <th scope="col">Prix</th>
-        <th scope="col">Date</th>
+        <!-- <th scope="col">Date</th> -->
         <th scope="col">Catégorie</th>
         <th>Actions</th>
       </tr>
@@ -16,8 +16,8 @@
       <tr *ngFor="let product of products; let i = index">
         <th>{{ product.idProd }}</th>
         <td>{{ product.nameProd }}</td>
-        <td>{{ product.price | spaceSeparated }} €</td>
-        <td>{{ product.date }}</td>
+        <td>{{ product.price*1.2 | spaceSeparated }} €</td>
+        <!-- <td>{{ product.date }}</td> -->
         <td>{{ product.category.nameCat }}</td>
         <td>
           <button class="btn btn-success me-2" (click)="addItemToBasket(product.idProd, 1)">Ajouter au panier <i class="fas fa-cart-plus"></i></button>
