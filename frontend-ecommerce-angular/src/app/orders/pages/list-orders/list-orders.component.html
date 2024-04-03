@@ -7,7 +7,7 @@
         <th scope="col">ID de la commande</th>
         <th scope="col">Nom client</th>
         <th scope="col">État de la commande</th>
-        <th>Actions</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -23,7 +23,7 @@
 
           <td>
             <!-- Boutons d'action -->
-            <button class="btn btn-primary me-2" (click)="viewOrderDetails(order.id)">Détails</button>
+            <!-- <button class="btn btn-primary me-2" (click)="viewOrderDetails(order.id)">Détails</button> -->
             <button class="btn btn-warning me-2" (click)="editOrder(order.id)">Modifier</button>
             <!-- <button class="btn btn-danger" (click)="deleteOrder(order.id)">Supprimer</button> -->
           </td>
@@ -44,15 +44,15 @@
           <p>Téléphone: {{ order.client.phone }}</p>
         </div>
         <div class="items">
-          <h3>Articles:</h3>
+          <h3>Détails de la facture :</h3>
           <table class="table table-striped">
             <thead>
               <tr>
                 <th>Nom du produit</th>
                 <th>Prix unitaire</th>
-                <th>Quantité</th>
-                <th>Total hors taxe</th>
-                <th>Total avec taxe</th>
+                <th>Qté</th>
+                <th>Total HT</th>
+                <th>Total TTC</th>
               </tr>
             </thead>
             <tbody>
@@ -64,7 +64,7 @@
                 <td>{{ item.totalWithTaxe | spaceSeparated }} €</td>
               </tr>
               <tr>
-                <td colspan="4" class="text-end fw-bold">Prix total:</td>
+                <td colspan="4" class="text-end fw-bold">Facture total:</td>
                 <td>{{ totalPrice ? (totalPrice | spaceSeparated) : '0' }} €</td>
               </tr>
 
