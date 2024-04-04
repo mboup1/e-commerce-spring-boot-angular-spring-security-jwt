@@ -5,7 +5,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">ID produit</th>
+        <!-- <th scope="col">ID produit</th> -->
         <th scope="col">Nom du produit</th>
         <th scope="col">Quantité</th>
         <th scope="col">Prix unitaire</th>
@@ -14,7 +14,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of basket.basketItems">
-        <td>{{ item.product.idProd }}</td>
+        <!-- <td>{{ item.product.idProd }}</td> -->
         <td>{{ item.product.nameProd }}</td>
         <td>
           <button class="btn btn-danger me-2" (click)="removeItemFromBasket(item.product.idProd, 1)">-</button>
