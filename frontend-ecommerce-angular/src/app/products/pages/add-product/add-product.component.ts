@@ -31,6 +31,7 @@ export class AddProductComponent implements OnInit {
   initForm(): void {
     this.newProductForm = new FormGroup({
       nameProd: new FormControl('', Validators.required),
+      imageUrl: new FormControl('', Validators.required),
       price: new FormControl('', [Validators.required, Validators.min(0)]),
       categoryId: new FormControl('', Validators.required)
     });
@@ -52,6 +53,7 @@ export class AddProductComponent implements OnInit {
       const newProduct: Product = {
         idProd: 0,
         nameProd: this.newProductForm.value.nameProd,
+        imageUrl: this.newProductForm.value.imageUrl,
         price: this.newProductForm.value.price,
         date: new Date(),
         category: {

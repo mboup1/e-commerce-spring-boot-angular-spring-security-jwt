@@ -35,6 +35,7 @@ export class EditProductComponent implements OnInit {
   initForm(): void {
     this.editProductForm = new FormGroup({
       nameProd: new FormControl('', Validators.required),
+      imageUrl: new FormControl('', Validators.required),
       price: new FormControl('', [Validators.required, Validators.min(0)]),
       categoryId: new FormControl('', Validators.required)
     });
@@ -56,6 +57,7 @@ export class EditProductComponent implements OnInit {
       (product: Product) => {
         this.editProductForm.patchValue({
           nameProd: product.nameProd,
+          imageUrl: product.imageUrl,
           price: product.price,
           categoryId: product.category.idCat
         });
@@ -71,6 +73,7 @@ export class EditProductComponent implements OnInit {
       const updatedProduct: Product = {
         idProd: this.productId,
         nameProd: this.editProductForm.value.nameProd,
+        imageUrl: this.editProductForm.value.imageUrl,
         price: this.editProductForm.value.price,
         date: new Date(),
         category: {

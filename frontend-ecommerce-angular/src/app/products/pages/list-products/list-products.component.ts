@@ -89,6 +89,7 @@ export class ListProductsComponent {
         idProd: productID,
         category: { idCat: 1, nameCat: "Category Name", descriptionCat: "Category Description" },
         nameProd: '',
+        imageUrl: '',
         price: 0,
         date: new Date()
       },
