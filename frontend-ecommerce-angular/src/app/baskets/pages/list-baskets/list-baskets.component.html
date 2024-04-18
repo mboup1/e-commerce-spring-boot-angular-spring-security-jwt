@@ -1,5 +1,5 @@
 <!-- <p>edit-basket works!</p> -->
-<div *ngIf="basket" class="bg-white shadow p-4 rounded">
+<div *ngIf="basket && basket.basketItems.length > 0" class="bg-white shadow p-4 rounded">
   <h1 class="display-6 text-dark text-center">Votre panier</h1>
   <hr class="bg-dark text-dark">
   <table class="table table-striped">
@@ -17,7 +17,7 @@
       <tr *ngFor="let item of basket.basketItems">
         <!-- <td>{{ item.product.idProd }}</td> -->
         <td>{{ item.product.nameProd }}</td>
-        <td><img [src]="item.product.imageUrl" alt="{{ item.product.nameProd }}" style="max-width: 70px; max-height: 70px;"></td>
+        <td><img [src]="item.product.imageUrl" alt="{{ item.product.nameProd }}" style="max-width: 50px; max-height: 50px;"></td>
         <td>
           <button class="btn btn-danger me-2" (click)="removeItemFromBasket(item.product.idProd, 1)">-</button>
           {{ item.quantity }}
@@ -29,7 +29,14 @@
     </tbody>
   </table>
   <p class="text-end me-5">Total du panier : <strong>{{ totalPrice ? (totalPrice | spaceSeparated) : '0' }} €</strong></p>
-    <button class="btn btn-success" (click)="passerCommande()">Passer la commande</button>
+<button class="btn btn-success" (click)="passerCommande()">
+  Passer la commande
+</button>
 
 </div>
+
+<div *ngIf="!(basket && basket.basketItems.length > 0)" class="bg-white shadow p-5 rounded text-center">
+  <h1 class="display-6 text-dark">Panier vide</h1>
+</div>
+
 

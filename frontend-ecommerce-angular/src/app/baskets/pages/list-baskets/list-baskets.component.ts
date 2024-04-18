@@ -74,9 +74,14 @@ export class ListBasketsComponent implements OnInit {
     });
   }
 
+
   removeItemFromBasket(productID: number, quantity: number): void {
-  const basketItem: BasketItem = this.createBasketItem(productID, quantity);
-  this.basketService.removeItemFromBasket(basketItem).subscribe({
+    const basketItem: BasketItem = this.createBasketItem(productID, quantity);
+
+    console.log('this.basket.basketItems.length :', this.basket.basketItems.length);
+    // console.log('basketItem :', basketItem);
+
+    this.basketService.removeItemFromBasket(basketItem).subscribe({
     next: () => {
       // console.log('Item removed from basket successfully');
       this.getBasketById();
@@ -114,6 +119,36 @@ export class ListBasketsComponent implements OnInit {
     console.log('Commande passée avec succès!');
     // Vous pouvez rediriger l'utilisateur vers une autre page ou effectuer toute autre action nécessaire après avoir passé la commande
   }
+
+
+
+  // removeItemFromBasket(productID: number, quantity: number): void {
+  //   const basketItem: BasketItem = this.createBasketItem(productID, quantity);
+
+  //   // Vérifier si la quantité du produit est égale à 1
+  //   const productIndex = this.basket.basketItems.findIndex((item: BasketItem) => item.product.idProd === productID);
+  //   if (productIndex !== -1 && this.basket.basketItems[productIndex].quantity === 1) {
+  //     const confirmation = window.confirm("Voulez-vous vraiment supprimer ce produit ?");
+  //     if (confirmation) {
+  //       this.removeItemFromBasketService(basketItem);
+  //     }
+  //   } else {
+  //     this.removeItemFromBasketService(basketItem);
+  //   }
+  // }
+
+  // private removeItemFromBasketService(basketItem: BasketItem): void {
+  //   this.basketService.removeItemFromBasket(basketItem).subscribe({
+  //     next: () => {
+  //       // console.log('Item removed from basket successfully');
+  //       this.getBasketById();
+  //       this.getTotalPrice();
+  //     },
+  //     error: (error) => {
+  //       console.error('Error removing item from basket:', error);
+  //     }
+  //   });
+  // }
 
 
 }

@@ -1,5 +1,6 @@
 <div class="container">
   <nav class="navbar navbar-expand-md navbar-light bg-light pagination">
+    <!-- <a class="navbar-brand page-link" [routerLink]="['/admin']">Admin</a> -->
     <a class="navbar-brand page-link" [routerLink]="['/products']">Gestion des produits</a>
     <!-- <a class="navbar-brand page-link" [routerLink]="['/clients']">Gestion des clients</a> -->
     <a class="navbar-brand page-link" [routerLink]="['/addProduct']">Ajouter un produit</a>
@@ -10,7 +11,7 @@
         <li (click)="reloadBasket()">
           <a class="navbar-brand page-link" [routerLink]="['/basket']">
             Panier <i class="fas fa-shopping-cart"></i>
-            <span class="badge bg-danger rounded-circle">{{ basket?.totalItems }}</span>
+            <span *ngIf="basket" class="badge bg-danger rounded-circle">{{ basket.totalItems }}</span>
           </a>
         </li>
         <!-- <li class="nav-item btn btn-outline-success rounded-pill me-2">

@@ -101,6 +101,14 @@ export class ListProductsComponent {
     return basketItem;
   }
 
+  truncateText(text:string, maxLength:number) {
+    if (text.length <= maxLength) {
+      return text;
+    } else {
+      return text.slice(0, maxLength) + '...';
+    }
+  }
+
 
   // getBasketById(): void {
   //   this.basketService.getBasketById(1).subscribe(

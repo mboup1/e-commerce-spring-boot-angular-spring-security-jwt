@@ -29,7 +29,7 @@ export class HeaderComponent {
         next: (basket: Basket) => {
           this.basket = basket;
 
-          console.log("basket : ", basket);
+          // console.log("basket : ", basket);
         },
         error: (error) => {
           console.error('Error fetching basket:', error);
@@ -39,7 +39,7 @@ export class HeaderComponent {
   }
 
   reloadBasket(): void {
-    window.location.reload(); 
+    window.location.reload();
   }
 
 
