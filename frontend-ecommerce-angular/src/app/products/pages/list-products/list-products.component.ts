@@ -91,6 +91,7 @@ export class ListProductsComponent {
         nameProd: '',
         imageUrl: '',
         price: 0,
+        rating: 0,
         date: new Date()
       },
       quantity: quantity,
@@ -107,6 +108,15 @@ export class ListProductsComponent {
     } else {
       return text.slice(0, maxLength) + '...';
     }
+  }
+
+  generateStarRating(rating:number) {
+    const maxStars = 5;
+    const fullStars = Math.floor(rating);
+    const halfStar = rating % 1 !== 0;
+    const emptyStars = maxStars - fullStars - (halfStar ? 1 : 0);
+    const stars = '★'.repeat(fullStars) + (halfStar ? '½' : '') + '☆'.repeat(emptyStars);
+    return stars;
   }
 
 

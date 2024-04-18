@@ -20,6 +20,8 @@ public class Product {
     private double price;
     private Date date;
     private String imageUrl;
+    private double rating;
+
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -33,17 +35,12 @@ public class Product {
     public Product() {
     }
 
-//    public Product(String nameProd, double price, Date date) {
-//        this.nameProd = nameProd;
-//        this.price = price;
-//        this.date = date;
-//    }
-
-    public Product(String nameProd, double price, Date date, String imageUrl) {
+    public Product(String nameProd, double price, Date date, String imageUrl, double rating) {
         this.nameProd = nameProd;
         this.price = price;
         this.date = date;
         this.imageUrl = imageUrl;
+        this.rating = rating;
     }
 
     public Long getIdProd() {
@@ -82,6 +79,10 @@ public class Product {
 
     public void setImageUrl(String imageUrl) {this.imageUrl = imageUrl;}
 
+    public double getRating() {return rating;}
+
+    public void setRating(double rating) {this.rating = rating;}
+
     public Category getCategory() {
         return category;
     }
@@ -108,6 +109,7 @@ public class Product {
                 ", price=" + price +
                 ", date=" + date +
                 ", imageUrl=" + imageUrl +
+                ", rating=" + rating +
                 '}';
     }
 }

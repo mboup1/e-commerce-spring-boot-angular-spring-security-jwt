@@ -10,7 +10,8 @@
             <div class="card-body">
               <h5 class="card-title fs-3">{{ truncateText(product.nameProd, 40) }}</h5>
 
-              <p class="card-text">{{ product.category.nameCat }}</p>
+              <p class="card-text text-warning fs-4">{{ generateStarRating(product.rating) }}</p>
+              <!-- <p class="card-text">{{ product.category.nameCat }}</p> -->
               <p class="card-text fs-2">{{ product.price*1.2 | spaceSeparated }}€</p>
               <button class="btn btn-success me-2 w-100" (click)="addItemToBasket(product.idProd, 1)">Ajouter au panier
                 <i class="fas fa-cart-plus"></i>

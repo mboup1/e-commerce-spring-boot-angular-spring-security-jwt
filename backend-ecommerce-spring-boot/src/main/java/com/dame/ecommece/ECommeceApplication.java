@@ -64,19 +64,19 @@ public class ECommeceApplication {
             categoryRepository.save(category9);
 
             // Ajouter trois produits
-            Product product1 = new Product("Tv curvée Samsung", 300.00, new Date(), "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg");
+            Product product1 = new Product("Tv curvée Samsung", 300.00, new Date(), "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg", 5);
             product1.setCategory(category2);
-            Product product2 = new Product("T-Shirt", 20.00, new Date(), "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg");
+            Product product2 = new Product("T-Shirt", 20.00, new Date(), "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg", 4);
             product2.setCategory(category4);
-            Product product3 = new Product("Ecran Acer ", 150.00, new Date(), "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg");
+            Product product3 = new Product("Ecran Acer ", 150.00, new Date(), "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg", 5);
             product3.setCategory(category7);
 
             // Ajouter d'autres produits avec les nouvelles catégories
-            Product product4 = new Product("Veste homme", 75.00, new Date(), "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg");
+            Product product4 = new Product("Veste homme", 75.00, new Date(), "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg", 5);
             product4.setCategory(category4);
-            Product product5 = new Product("Disque SSD SanDik", 500.00, new Date(), "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg");
+            Product product5 = new Product("Disque SSD SanDik", 500.00, new Date(), "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg", 3);
             product5.setCategory(category3);
-            Product product6 = new Product("Veste femme", 70.00, new Date(), "https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_.jpg");
+            Product product6 = new Product("Veste femme", 70.00, new Date(), "https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_.jpg", 4);
             product6.setCategory(category4);
 
             productRepository.save(product1);

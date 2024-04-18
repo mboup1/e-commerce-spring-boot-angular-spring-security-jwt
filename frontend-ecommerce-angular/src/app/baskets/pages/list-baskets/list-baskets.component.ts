@@ -104,6 +104,7 @@ export class ListBasketsComponent implements OnInit {
         nameProd: '',
         imageUrl: '',
         price: 0,
+        rating: 0,
         date: new Date()
       },
       quantity: quantity,
