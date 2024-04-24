@@ -29,7 +29,8 @@
       </tr>
     </tbody>
   </table>
-  <p class="text-end me-5">Total du panier : <strong>{{ totalPrice ? (totalPrice | spaceSeparated) : '0' }} €</strong></p>
+  <p class="text-end me-5">Total du panier : <strong>{{ totalPrice ? (totalPrice ) : '0' }} €</strong></p>
+  <!-- <p class="text-end me-5">Total du panier : <strong>{{ totalPrice ? (totalPrice | spaceSeparated) : '0' }} €</strong></p> -->
 <button class="btn btn-success" (click)="passerCommande()">
   Passer la commande
 </button>

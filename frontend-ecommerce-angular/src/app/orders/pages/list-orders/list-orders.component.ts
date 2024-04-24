@@ -58,7 +58,7 @@ export class ListOrdersComponent implements OnInit {
   editOrder(orderId: number): void {
     console.log("productId : ", orderId)
     // Implémentez votre logique pour rediriger vers la page d'édition du produit, par exemple :
-    this.router.navigate(['/edit-order', orderId]);
+    this.router.navigate(['orders/edit-order', orderId]);
 
   }
 

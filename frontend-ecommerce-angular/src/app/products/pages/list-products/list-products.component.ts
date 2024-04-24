@@ -58,7 +58,7 @@ export class ListProductsComponent {
   onEditProduct(productId: number): void {
     console.log("productId : ", productId)
     // Implémentez votre logique pour rediriger vers la page d'édition du produit, par exemple :
-    this.router.navigate(['/edit-product', productId]);
+    this.router.navigate(['products/edit-product', productId]);
   }
 
 
