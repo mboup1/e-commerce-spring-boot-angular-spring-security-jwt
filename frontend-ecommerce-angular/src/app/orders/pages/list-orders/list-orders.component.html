@@ -1,7 +1,7 @@
 <div class="bg-white shadow p-4 rounded">
-  <h1 class="display-6 text-dark text-center">Liste des commandes</h1>
-  <hr class="bg-dark text-dark">
-  <table class="table table-striped">
+  <h1 class="display-6 text-dark text-center">Passer la commande</h1>
+  <hr class="bg-dark text-dark"  *ngIf="showOrderTable">
+  <table class="table table-striped" *ngIf="showOrderTable">
     <thead>
       <tr>
         <th scope="col">ID de la commande</th>
@@ -33,18 +33,18 @@
   </table>
 
   <!-- Détails de chaque commande avec les articles associés -->
-  <ng-container *ngIf="orders">
+  <ng-container *ngIf="orders && !showOrderTable">
     <div *ngFor="let order of orders">
       <div class="invoice">
         <div class="header">
-          <h2>Facture N° {{ order.id }}</h2>
-          <p>Date de commande: {{ order.date | date: 'dd/MM/yyyy' }}</p>
-          <p>Client: {{ order.client.companyName }}</p>
-          <p>Email: {{ order.client.email }}</p>
-          <p>Téléphone: {{ order.client.phone }}</p>
+          <!-- <h2>Facture N° {{ order.id }}</h2> -->
+          <!-- <p><strong>Date de commande</strong>: {{ order.date | date: 'dd/MM/yyyy' }}</p> -->
+          <p><strong>Client</strong>: {{ order.client.companyName }}</p>
+          <p><strong>Email</strong>: {{ order.client.email }}</p>
+          <p><strong>Téléphone</strong>: {{ order.client.phone }}</p>
         </div>
         <div class="items">
-          <h3>Détails de la facture :</h3>
+          <h3>Détails de la commande :</h3>
           <table class="table table-striped">
             <thead>
               <tr>
@@ -65,13 +65,13 @@
                 <td>{{ item.totalExcludeTaxe | spaceSeparated}} €</td>
                 <td>{{ item.totalWithTaxe | spaceSeparated }} €</td>
               </tr>
-              <tr>
-                <td colspan="4" class="text-end fw-bold">Facture total:</td>
-                <td>{{ totalPrice ? (totalPrice | spaceSeparated) : '0' }} €</td>
-              </tr>
-
             </tbody>
           </table>
+            <p class="text-end me-5">Total du panier : <strong>{{ totalPrice ? (totalPrice ) : '0' }} €</strong></p>
+            <!-- <p class="text-end me-5">Total du panier : <strong>{{ totalPrice ? (totalPrice | spaceSeparated) : '0' }} €</strong></p> -->
+            <button class="btn btn-success" (click)="payOrder()">
+              Passez votre commande et payer
+            </button>
         </div>
       </div>
     </div>

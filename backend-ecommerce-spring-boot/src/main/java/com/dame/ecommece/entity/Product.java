@@ -2,7 +2,6 @@ package com.dame.ecommece.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.hibernate.annotations.Formula;
 
 import java.util.ArrayList;
 import java.util.Date;

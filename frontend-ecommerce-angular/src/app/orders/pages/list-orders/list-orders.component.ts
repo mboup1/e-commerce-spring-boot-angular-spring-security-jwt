@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 export class ListOrdersComponent implements OnInit {
   orders: Order[] = [];
   totalPrice!: number;
+  showOrderTable: boolean = false;
+
 
   constructor(
     private orderService: OrderService,
@@ -51,11 +53,21 @@ export class ListOrdersComponent implements OnInit {
     });
   }
 
+  payOrder(): void {
+    // this.router.navigate(['/orders']);
+
+    // Mettez ici la logique pour passer la commande
+    console.log('Commande payée avec succès!');
+    this.showOrderTable = true;
+
+  }
+
   viewOrderDetails(orderId: number): void{
 
   }
 
   editOrder(orderId: number): void {
+    
     console.log("productId : ", orderId)
     // Implémentez votre logique pour rediriger vers la page d'édition du produit, par exemple :
     this.router.navigate(['orders/edit-order', orderId]);

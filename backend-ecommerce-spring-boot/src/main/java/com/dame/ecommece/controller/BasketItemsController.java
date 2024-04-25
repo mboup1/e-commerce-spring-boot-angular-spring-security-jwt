@@ -2,6 +2,7 @@ package com.dame.ecommece.controller;
 
 import com.dame.ecommece.entity.BasketItem;
 import com.dame.ecommece.repository.BasketItemRepository;
+import com.dame.ecommece.service.BasketItemService;
 import com.dame.ecommece.service.BasketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,9 @@ public class BasketItemsController {
     private BasketService basketService;
 
     @Autowired
+    private BasketItemService basketItemService;
+
+    @Autowired
     private BasketItemRepository basketItemRepository;
 
 
@@ -28,13 +32,13 @@ public class BasketItemsController {
 
     @PostMapping("/{basketId}/items")
     public ResponseEntity<BasketItem> addItemToBasketJson(@RequestBody BasketItem basketItem) {
-        BasketItem addBasketItem = basketService.addItemToBasket(basketItem);
+        BasketItem addBasketItem = basketItemService.addItemToBasket(basketItem);
         return new ResponseEntity<>(addBasketItem, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{basketId}/items")
     public ResponseEntity<Void> removeItemFromBasket(@RequestBody BasketItem basketItem) {
-        basketService.removeItemFromBasket(basketItem);
+        basketItemService.removeItemFromBasket(basketItem);
         return ResponseEntity.ok().build();
     }
 

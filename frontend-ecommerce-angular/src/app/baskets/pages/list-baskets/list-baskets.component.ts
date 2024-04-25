@@ -115,10 +115,14 @@ export class ListBasketsComponent implements OnInit {
     return basketItem;
   }
 
-  passerCommande(): void {
+  validateOrder(): void {
+    this.router.navigate(['/orders']);
+
     // Mettez ici la logique pour passer la commande
     console.log('Commande passée avec succès!');
-    // Vous pouvez rediriger l'utilisateur vers une autre page ou effectuer toute autre action nécessaire après avoir passé la commande
+
+
+
   }
 
 
