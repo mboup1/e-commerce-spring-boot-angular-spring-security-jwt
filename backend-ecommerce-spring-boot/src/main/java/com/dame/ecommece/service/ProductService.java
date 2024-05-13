@@ -28,10 +28,10 @@ public class ProductService {
     public Product updateProduct(Long id, Product updatedProduct) {
         Product existingProduct = getProductById(id);
         if (existingProduct != null) {
-            updatedProduct.setIdProd(id); // Ensure the product id matches the path variable id
+            updatedProduct.setIdProd(id);
             return productRepository.save(updatedProduct);
         } else {
-            return null; // Or throw an exception if the product doesn't exist
+            return null;
         }
     }
 
