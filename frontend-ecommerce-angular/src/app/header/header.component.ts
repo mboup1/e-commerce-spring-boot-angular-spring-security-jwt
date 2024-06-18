@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Basket } from '../interfaces/basket';
 import { BasketService } from '../baskets/service/basket.service';
 import { Route, Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -14,11 +15,26 @@ export class HeaderComponent {
 
   constructor(
     private basketService: BasketService,
-    private router: Router
+    private router: Router,
+    public authService: AuthService
   ) { }
 
   ngOnInit(): void {
     this.getBasketById();
+
+
+    const isloggedin = localStorage.getItem('isloggedIn');
+    const loggedUser = localStorage.getItem('loggedUser');
+    
+    if (isloggedin != "true" || !loggedUser)
+      this.router.navigate(['/login']);
+    else
+      this.authService.setLoggedUserFromLocalStorage(loggedUser);
+
+    // this.authService.loadToken();
+    // if (this.authService.getToken() == null ||
+    //   this.authService.isTokenExpired())
+    //   this.router.navigate(['/login']);
 
   }
 
@@ -40,6 +56,10 @@ export class HeaderComponent {
 
   reloadBasket(): void {
     window.location.reload();
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 
 

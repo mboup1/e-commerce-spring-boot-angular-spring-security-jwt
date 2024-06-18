@@ -4,7 +4,7 @@ import { SpaceSeparatedPipe } from './space-separated.pipe';
 
 @NgModule({
   declarations: [
-    SpaceSeparatedPipe
+    SpaceSeparatedPipe,
   ],
   imports: [
     CommonModule

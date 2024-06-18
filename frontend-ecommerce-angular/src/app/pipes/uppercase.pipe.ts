@@ -10,6 +10,6 @@ export class UppercasePipe implements PipeTransform {
     const subStr = value.substring(1);
     return uppercase + subStr;
   }
-  
+
 
 }

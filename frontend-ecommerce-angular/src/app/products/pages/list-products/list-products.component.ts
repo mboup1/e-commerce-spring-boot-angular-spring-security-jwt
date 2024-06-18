@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { BasketItem } from '../../../interfaces/basket-item';
 import { BasketService } from '../../../baskets/service/basket.service';
 import { Basket } from '../../../interfaces/basket';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-list-products',
@@ -19,6 +20,8 @@ export class ListProductsComponent {
   constructor(
     private productService: ProductService,
     private basketService: BasketService,
+    public authService: AuthService,
+
     private router: Router
   ) { }
 

@@ -3,9 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EditBasketItemComponent } from './basket-items/pages/edit-basket-item/edit-basket-item.component';
-import { AddBasketItemComponent } from './basket-items/pages/add-basket-item/add-basket-item.component';
-import { ListBasketItemsComponent } from './basket-items/pages/list-basket-items/list-basket-items.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ReplacePipe } from './pipes/replace.pipe';
@@ -16,11 +13,16 @@ import { OrdersModule } from './orders/orders.module';
 import { BasketsModule } from './baskets/baskets.module';
 import { BasketItemsModule } from './basket-items/basket-items.module';
 import { CategoriesModule } from './categories/categories.module';
+import { LoginComponent } from './login/login.component';
+import { ForbiddenComponent } from './errors/forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ReplacePipe,
+    LoginComponent,
+    ForbiddenComponent
+
   ],
   imports: [
     BrowserModule,
@@ -34,8 +36,6 @@ import { CategoriesModule } from './categories/categories.module';
     BasketItemsModule,
     CategoriesModule,
     HeaderModule,
-
-
 
   ],
   providers: [],
