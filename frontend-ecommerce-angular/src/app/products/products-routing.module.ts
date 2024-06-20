@@ -11,7 +11,7 @@ import { ProductGuard } from '../product.guard';
 const routes: Routes = [
   { path: '', component: ListProductsComponent},
   { path: 'addProduct', component: AddProductComponent, canActivate: [ProductGuard] },
-  { path: 'edit-product/:id', component: EditProductComponent }
+  { path: 'edit-product/:id', component: EditProductComponent, canActivate: [ProductGuard] }
 ];
 
 @NgModule({

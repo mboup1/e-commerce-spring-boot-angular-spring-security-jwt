@@ -3,6 +3,7 @@ import { User } from '../interfaces/User';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { BasketService } from '../baskets/service/basket.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,11 @@ export class AuthService {
   public isloggedIn: Boolean = false;
   public roles!: string[];
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router,
+    private http: HttpClient,
+    private basketService: BasketService,
+
+  ) { }
 
   // Authentication methods
   login(user: User) {
@@ -31,6 +36,7 @@ export class AuthService {
     this.isloggedIn = false;
     localStorage.removeItem('jwt');
     localStorage.removeItem('isloggedIn');
+    // this.basketService.clearAllBasketItems().subscribe();
     this.router.navigate(['/products']);
   }
 

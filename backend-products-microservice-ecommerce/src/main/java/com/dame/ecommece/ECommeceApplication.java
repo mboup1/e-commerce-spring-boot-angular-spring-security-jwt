@@ -40,12 +40,12 @@ public class ECommeceApplication {
     @PostConstruct
     void init_products() {
         if (productRepository.count() == 0) {
-            // Ajouter trois catégories
+            // Add three categories
             Category category1 = new Category("Téléphonie", "Appareils électroniques de communication");
             Category category2 = new Category("Télévision", "Appareils de diffusion audiovisuelle");
             Category category3 = new Category("Ordinateur", "Dispositifs informatiques");
 
-            // Ajouter d'autres catégories
+            // Add more categories
             Category category4 = new Category("Vêtements", "Articles vestimentaires");
             Category category5 = new Category("Livres", "Oeuvres littéraires");
             Category category6 = new Category("Meubles", "Articles d'ameublement");
@@ -63,7 +63,7 @@ public class ECommeceApplication {
             categoryRepository.save(category8);
             categoryRepository.save(category9);
 
-            // Ajouter trois produits
+            // Add three products
             Product product1 = new Product("Tv curvée Samsung", 300.00, new Date(), "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg", 5);
             product1.setCategory(category2);
             Product product2 = new Product("T-Shirt", 20.00, new Date(), "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg", 4);
@@ -71,7 +71,7 @@ public class ECommeceApplication {
             Product product3 = new Product("Ecran Acer ", 150.00, new Date(), "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg", 5);
             product3.setCategory(category7);
 
-            // Ajouter d'autres produits avec les nouvelles catégories
+            // Add more products with the new categories
             Product product4 = new Product("Veste homme", 75.00, new Date(), "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg", 5);
             product4.setCategory(category4);
             Product product5 = new Product("Disque SSD SanDik", 500.00, new Date(), "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg", 3);
@@ -86,28 +86,28 @@ public class ECommeceApplication {
             productRepository.save(product5);
             productRepository.save(product6);
 
-            // Ajouter le client par défaut
+            // Add the default client
             Client initialClient = new Client("Amazon", "Jeff", "Bezos", "jeff@jeff.com", "06568584444", "124 Amazon", "456",
                     "San Francisco",
                     "USA",
                     ClientState.ACTIVE
             );
 
-            // Sauvegarder le client initial
+            // Save the initial client
             clientService.addClient(initialClient);
 
-            // Créer un panier initial
+            // Create an initial basket
             Basket basket = new Basket("Panier");
             basketRepository.save(basket);
 
-            //Créer une commande  initiale
+            // Create an initial order
             Order order = new Order(1L, OrderState.CONFIRMED);
             orderService.addOrder(order);
 
-//			//Ajouter un article dans le panier
-//			// Appeler l'API pour ajouter un article dans le panier
-//			String addItemUrl = "http://localhost:8080/api/basket/1/items?basketId=1&productId=2&quantity=3";
-//			restTemplate().postForObject(addItemUrl, null, String.class);
+            // Add an item to the basket (uncomment to enable)
+            // Call the API to add an item to the basket
+            // String addItemUrl = "http://localhost:8080/api/basket/1/items?basketId=1&productId=2&quantity=3";
+            // restTemplate().postForObject(addItemUrl, null, String.class);
 
         }
     }

@@ -43,5 +43,12 @@ public class BasketItemsController {
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping("/clear-all")
+    public ResponseEntity<Void> clearAllBasketItems() {
+        basketItemService.clearAllBasketItems();
+        return ResponseEntity.ok().build();
+    }
+
+
 }
 

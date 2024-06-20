@@ -108,5 +108,10 @@ public class BasketItemService {
         // Mettre à jour le panier dans la base de données
         basketRepository.save(basket);
     }
+
+    public void clearAllBasketItems() {
+        List<BasketItem> allBasketItems = basketItemRepository.findAll();
+        basketItemRepository.deleteAll(allBasketItems);
+    }
 }
 

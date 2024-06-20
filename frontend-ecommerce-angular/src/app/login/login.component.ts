@@ -44,11 +44,11 @@ export class LoginComponent implements OnInit {
       this.user.username = this.newUserForm.value.username;
       this.user.password = this.newUserForm.value.password;
       }
-    console.log(this.user);
 
     this.authService.login(this.user).subscribe({
       next: (data) => {
         let jwToken = data.headers.get('Authorization')!;
+        // console.log(jwToken)
         this.authService.saveToken(jwToken);
         this.router.navigate(['/']);
       },

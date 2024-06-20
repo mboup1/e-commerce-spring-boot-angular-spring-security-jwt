@@ -24,6 +24,7 @@ export class BasketService {
     return this.http.delete<Basket>(`${API_BASE_URL}/baskets/${id}`);
   }
 
+
   getBasketById(id: number): Observable<Basket> {
     return this.http.get<Basket>(`${API_BASE_URL}/basket/${id}`);
   }
@@ -54,6 +55,10 @@ export class BasketService {
 
   removeItemFromBasket(basketItem: BasketItem): Observable<void> {
     return this.http.delete<void>(`${API_BASE_URL}/basket-items/1/items`, { body: basketItem });
+  }
+
+  clearAllBasketItems(): Observable<void> {
+    return this.http.delete<void>(`${API_BASE_URL}/basket-items/clear-all`);
   }
 
 

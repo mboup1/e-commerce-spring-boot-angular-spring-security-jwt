@@ -12,6 +12,7 @@ import { AuthService } from '../services/auth.service';
 export class HeaderComponent {
   basket!: Basket;
   totalPrice!: number;
+  // totalItems!: number;
 
   constructor(
     private basketService: BasketService,
@@ -21,6 +22,8 @@ export class HeaderComponent {
 
   ngOnInit(): void {
     this.getBasketById();
+
+    console.log(this.getBasketById())
 
 
     const isloggedin = localStorage.getItem('isloggedIn');
@@ -47,6 +50,8 @@ export class HeaderComponent {
       {
         next: (basket: Basket) => {
           this.basket = basket;
+          console.log('Basket:', this.basket); // Logging basket here
+
         },
         error: (error) => {
           console.error('Error fetching basket:', error);
@@ -61,6 +66,22 @@ export class HeaderComponent {
 
   onLogout() {
     this.authService.logout();
+    this.clearAllBasketItems()
+  }
+
+  clearAllBasketItems() {
+    console.log("clear all items");
+    this.basketService.clearAllBasketItems().subscribe(
+      {
+        next: () => {
+          console.log('All basket items cleared.');
+          this.reloadBasket();
+        },
+        error: (error) => {
+          console.error('Error clearing basket items:', error);
+        }
+      }
+    );
   }
 
 }
