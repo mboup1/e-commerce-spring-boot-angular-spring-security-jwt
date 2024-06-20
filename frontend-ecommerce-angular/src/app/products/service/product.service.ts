@@ -2,18 +2,28 @@ import { Injectable } from '@angular/core';
 import { Product } from '../../interfaces/product';
 import { Observable } from 'rxjs';
 import { API_BASE_URL } from '../../config/config';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService,) { }
+
+  // getAllProducts(): Observable<Product[]> {
+  //   return this.http.get<Product[]>(`${API_BASE_URL}/products`);
+  // }
 
   getAllProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${API_BASE_URL}/products`);
+    let jwt = this.authService.getToken();
+    jwt = "Bearer " + jwt;
+    let httpHeaders = new HttpHeaders({ "Authorization": jwt })
+
+    return this.http.get<Product[]>(`${API_BASE_URL}/products`, { headers: httpHeaders });
   }
+
 
   addProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(`${API_BASE_URL}/products`, product);

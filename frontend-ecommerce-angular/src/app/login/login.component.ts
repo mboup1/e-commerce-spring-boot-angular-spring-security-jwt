@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
   newUserForm!: FormGroup;
   user: User = new User();
   errorMessage: number = 0;
+  // pas necessaire
+  err: number = 0;
   message: string = "login ou mot de passe erronés..";
 
 
@@ -37,19 +39,43 @@ export class LoginComponent implements OnInit {
   }
 
   onLoggedin() {
+
     if (this.newUserForm.valid) {
       this.user.username = this.newUserForm.value.username;
       this.user.password = this.newUserForm.value.password;
-    }
-
+      }
     console.log(this.user);
-    let isValidUser: Boolean = this.authService.SignIn(this.user);
-    if (isValidUser)
-      this.router.navigate(['/']);
-    else
-      this.errorMessage = 1;
-      // alert('Login ou mot de passe incorrecte!');
+
+    this.authService.login(this.user).subscribe({
+      next: (data) => {
+        let jwToken = data.headers.get('Authorization')!;
+        this.authService.saveToken(jwToken);
+        this.router.navigate(['/']);
+      },
+      error: (err: any) => {
+        this.err = 1;
+      }
+    });
   }
+
+
+  //Front sans back
+  // onLoggedin() {
+  //   if (this.newUserForm.valid) {
+  //     this.user.username = this.newUserForm.value.username;
+  //     this.user.password = this.newUserForm.value.password;
+  //   }
+
+  //   console.log(this.user);
+  //   let isValidUser: Boolean = this.authService.SignIn(this.user);
+  //   if (isValidUser) {
+  //     console.log('Login successful');
+
+  //     this.router.navigate(['/']);
+  //   } else
+  //     this.errorMessage = 1;
+  //     // alert('Login ou mot de passe incorrecte!');
+  // }
 
   //register
   // onLoggedin(): void {

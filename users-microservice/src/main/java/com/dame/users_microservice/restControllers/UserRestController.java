@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class UserRestController {
 
 	@Autowired

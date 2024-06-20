@@ -1,3 +1,4 @@
+<!-- header.component.html -->
 <div class="container">
   <nav class="navbar navbar-expand-md navbar-light bg-light pagination">
     <a class="navbar-brand page-link" [routerLink]="['/products']">Gestion des produits</a>
@@ -7,15 +8,14 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <li class="nav-item dropdown ms-auto">
+    <li *ngIf="authService.isloggedIn" class="nav-item dropdown ms-auto">
       <a class="navbar-brand page-link dropdown-toggle" href="#" id="navbardropProducts" role="button"
         data-bs-toggle="dropdown" aria-expanded="false">
         Produits et Commandes
       </a>
       <ul class="dropdown-menu" aria-labelledby="navbardropProducts">
-        <li *ngIf="authService.isAdmin()"><a class="dropdown-item" [routerLink]="['products/addProduct']">Ajouter un
-            produit</a></li>
-        <li><a class="dropdown-item" [routerLink]="['/orders']">Gestion des commandes</a></li>
+        <li *ngIf="authService.isAdmin()"><a class="dropdown-item" [routerLink]="['products/addProduct']">Ajouter un produit</a></li>
+        <li ><a class="dropdown-item" [routerLink]="['/orders']">Gestion des commandes</a></li>
       </ul>
     </li>
 
@@ -38,9 +38,9 @@
             Connexion
           </a>
           <ul class="dropdown-menu w-100" aria-labelledby="navbardrop">
-            <li *ngIf="!authService.isloggedIn"><a class="dropdown-item" [routerLink]="['/login']">Login</a></li>
-            <li *ngIf="authService.isloggedIn"><a class="dropdown-item" (click)="onLogout()">Logout</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li *ngIf="!authService.isloggedIn"><a class="dropdown-item" [routerLink]="['/login']">Se connecter</a></li>
+            <li *ngIf="authService.isloggedIn"><a class="dropdown-item" (click)="onLogout()">Déconnexion</a></li>
+            <!-- <li><a class="dropdown-item" href="#">Profile</a></li> -->
           </ul>
         </li>
       </ul>

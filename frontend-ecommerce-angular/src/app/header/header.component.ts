@@ -25,16 +25,19 @@ export class HeaderComponent {
 
     const isloggedin = localStorage.getItem('isloggedIn');
     const loggedUser = localStorage.getItem('loggedUser');
-    
-    if (isloggedin != "true" || !loggedUser)
+
+    console.log(loggedUser)
+
+    this.authService.loadToken();
+    if (this.authService.getToken() == null ||
+      this.authService.isTokenExpired())
+      this.router.navigate(['/login']);
+
+    //Without backend
+    if (isloggedin != "true")
       this.router.navigate(['/login']);
     else
-      this.authService.setLoggedUserFromLocalStorage(loggedUser);
-
-    // this.authService.loadToken();
-    // if (this.authService.getToken() == null ||
-    //   this.authService.isTokenExpired())
-    //   this.router.navigate(['/login']);
+      this.authService.setLoggedUserFromLocalStorage();
 
   }
 
@@ -44,8 +47,6 @@ export class HeaderComponent {
       {
         next: (basket: Basket) => {
           this.basket = basket;
-
-          // console.log("basket : ", basket);
         },
         error: (error) => {
           console.error('Error fetching basket:', error);
@@ -61,6 +62,5 @@ export class HeaderComponent {
   onLogout() {
     this.authService.logout();
   }
-
 
 }
