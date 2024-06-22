@@ -113,5 +113,14 @@ public class BasketItemService {
         List<BasketItem> allBasketItems = basketItemRepository.findAll();
         basketItemRepository.deleteAll(allBasketItems);
     }
+
+    public int getTotalQuantity(Long basketId) {
+        Basket basket = basketService.loadBasketById(basketId);
+        return basket.getBasketItems().stream()
+                .mapToInt(BasketItem::getQuantity)
+                .sum();
+    }
+
+
 }
 

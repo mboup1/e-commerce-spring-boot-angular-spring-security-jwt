@@ -49,6 +49,11 @@ public class BasketItemsController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/total-quantity/{basketId}")
+    public int getTotalQuantity(@PathVariable Long basketId) {
+        return basketItemService.getTotalQuantity(basketId);
+    }
+
 
 }
 

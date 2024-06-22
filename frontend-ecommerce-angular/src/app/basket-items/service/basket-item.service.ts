@@ -14,4 +14,8 @@ export class BasketItemService {
   getAllBasketItems(): Observable<BasketItem[]> {
     return this.http.get<BasketItem[]>(`${API_BASE_URL}/basket-items`);
   }
+
+  getTotalQuantity(): Observable<number> {
+    return this.http.get<number>(`${API_BASE_URL}/basket-items/total-quantity/1`);
+  }
 }

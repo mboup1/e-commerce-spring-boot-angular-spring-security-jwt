@@ -3,6 +3,8 @@ import { Basket } from '../interfaces/basket';
 import { BasketService } from '../baskets/service/basket.service';
 import { Route, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { BasketItemService } from '../basket-items/service/basket-item.service';
 
 @Component({
   selector: 'app-header',
@@ -16,6 +18,7 @@ export class HeaderComponent {
 
   constructor(
     private basketService: BasketService,
+    // private basketItemService: BasketItemService,
     private router: Router,
     public authService: AuthService
   ) { }
@@ -23,7 +26,7 @@ export class HeaderComponent {
   ngOnInit(): void {
     this.getBasketById();
 
-    console.log(this.getBasketById())
+    // console.log(this.getBasketById())
 
 
     const isloggedin = localStorage.getItem('isloggedIn');
@@ -46,18 +49,15 @@ export class HeaderComponent {
 
 
   getBasketById(): void {
-    this.basketService.getBasketById(1).subscribe(
-      {
-        next: (basket: Basket) => {
-          this.basket = basket;
-          console.log('Basket:', this.basket); // Logging basket here
-
-        },
-        error: (error) => {
-          console.error('Error fetching basket:', error);
-        }
+    this.basketService.getBasketById(1).subscribe({
+      next: (basket: Basket) => {
+        this.basket = basket;
+        console.log('Basket:', this.basket);
+      },
+      error: (error) => {
+        console.error('Error fetching basket:', error);
       }
-    );
+    });
   }
 
   reloadBasket(): void {
