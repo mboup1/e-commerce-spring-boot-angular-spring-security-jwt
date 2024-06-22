@@ -11,7 +11,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/clients")
-//@CrossOrigin(origins = "http://localhost:4200")
 public class ClientController {
 
     @Autowired
@@ -68,7 +67,7 @@ public class ClientController {
                 updatedClient.getCity() == null || updatedClient.getCity().isEmpty() ||
                 updatedClient.getCountry() == null || updatedClient.getCountry().isEmpty() ||
                 updatedClient.getState() == null) {
-            return ResponseEntity.badRequest().body("Tous les champs doivent être remplis");
+            return ResponseEntity.badRequest().body("All fields must be completed");
         }
 
         return clientService.updateClient(id, updatedClient)

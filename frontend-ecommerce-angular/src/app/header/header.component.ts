@@ -1,52 +1,44 @@
-import { Component } from '@angular/core';
-import { Basket } from '../interfaces/basket';
+import { Component, OnInit } from '@angular/core';
 import { BasketService } from '../baskets/service/basket.service';
-import { Route, Router } from '@angular/router';
+import { Basket } from '../interfaces/basket';
+import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { BasketItemService } from '../basket-items/service/basket-item.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   basket!: Basket;
-  totalPrice!: number;
-  // totalItems!: number;
+  totalPrice: number = 0;
+  totalItems: number = 0;
 
   constructor(
     private basketService: BasketService,
-    // private basketItemService: BasketItemService,
     private router: Router,
     public authService: AuthService
   ) { }
 
   ngOnInit(): void {
-    this.getBasketById();
-
-    // console.log(this.getBasketById())
-
 
     const isloggedin = localStorage.getItem('isloggedIn');
     const loggedUser = localStorage.getItem('loggedUser');
 
-    console.log(loggedUser)
-
     this.authService.loadToken();
-    if (this.authService.getToken() == null ||
-      this.authService.isTokenExpired())
+    if (this.authService.getToken() == null || this.authService.isTokenExpired()) {
       this.router.navigate(['/login']);
+    }
 
-    //Without backend
-    if (isloggedin != "true")
+    // Without backend
+    if (isloggedin !== "true") {
       this.router.navigate(['/login']);
-    else
+    } else {
       this.authService.setLoggedUserFromLocalStorage();
+    }
+    this.getBasketById();
 
   }
-
 
   getBasketById(): void {
     this.basketService.getBasketById(1).subscribe({
@@ -64,24 +56,20 @@ export class HeaderComponent {
     window.location.reload();
   }
 
-  onLogout() {
+  onLogout(): void {
     this.authService.logout();
-    this.clearAllBasketItems()
+    this.clearAllBasketItems();
   }
 
-  clearAllBasketItems() {
-    console.log("clear all items");
-    this.basketService.clearAllBasketItems().subscribe(
-      {
-        next: () => {
-          console.log('All basket items cleared.');
-          this.reloadBasket();
-        },
-        error: (error) => {
-          console.error('Error clearing basket items:', error);
-        }
+  clearAllBasketItems(): void {
+    this.basketService.clearAllBasketItems().subscribe({
+      next: () => {
+        console.log('All basket items cleared.');
+        this.reloadBasket();
+      },
+      error: (error) => {
+        console.error('Error clearing basket items:', error);
       }
-    );
+    });
   }
-
 }

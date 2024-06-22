@@ -35,7 +35,6 @@ public class ProductService {
         }
     }
 
-
     public boolean deleteProduct(Long id) {
         if (productRepository.existsById(id)) {
             productRepository.deleteById(id);
@@ -43,6 +42,5 @@ public class ProductService {
         } else {
             return false;
         }
-
     }
 }

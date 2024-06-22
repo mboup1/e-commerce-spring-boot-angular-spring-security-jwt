@@ -23,7 +23,6 @@ public class ClientService {
     }
 
     public Client addClient(Client client) {
-//        System.out.println("add client");
         return clientRepository.save(client);
     }
 

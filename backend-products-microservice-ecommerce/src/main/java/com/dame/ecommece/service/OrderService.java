@@ -45,8 +45,7 @@ public class OrderService {
 
             return orderRepository.save(order);
         } else {
-            // Gérer le cas où le client n'est pas trouvé
-            throw new RuntimeException("Pas de client avec  l'id: " + clientId);
+            throw new RuntimeException("No customer with ID : " + clientId);
         }
     }
 

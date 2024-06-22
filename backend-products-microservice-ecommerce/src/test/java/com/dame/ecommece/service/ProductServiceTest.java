@@ -28,7 +28,6 @@ class ProductServiceTest {
 
     @Test
     void testGetAllProducts() {
-        // Préparation des données de test
         Product product1 = new Product("Tv curvée Samsung", 300.00, new Date(), "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg", 5);
         Product product2 = new Product("T-Shirt", 20.00, new Date(), "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg", 4);
 

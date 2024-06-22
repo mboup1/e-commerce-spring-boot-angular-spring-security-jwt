@@ -13,7 +13,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/basket-items")
-//@CrossOrigin(origins = "http://localhost:4200")
 public class BasketItemsController {
 
     @Autowired
@@ -47,11 +46,6 @@ public class BasketItemsController {
     public ResponseEntity<Void> clearAllBasketItems() {
         basketItemService.clearAllBasketItems();
         return ResponseEntity.ok().build();
-    }
-
-    @GetMapping("/total-quantity/{basketId}")
-    public int getTotalQuantity(@PathVariable Long basketId) {
-        return basketItemService.getTotalQuantity(basketId);
     }
 
 

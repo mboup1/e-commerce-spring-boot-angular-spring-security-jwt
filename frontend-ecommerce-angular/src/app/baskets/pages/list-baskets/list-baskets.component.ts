@@ -14,8 +14,6 @@ export class ListBasketsComponent implements OnInit {
   totalPrice!: number;
   totalItems: number = 0;
 
-
-
   constructor(
     private basketService: BasketService,
     private router: Router,
@@ -35,8 +33,10 @@ export class ListBasketsComponent implements OnInit {
       {
         next: (basket: Basket) => {
           this.basket = basket;
+          this.totalPrice = this.basket.totalPrice;
+          this.totalItems = this.basket.totalItems;
 
-          // console.log("basket : ", basket);
+          console.log("totalItems in ListBasketsComponent : ", this.totalItems);
         },
         error: (error) => {
           console.error('Error fetching basket:', error);
@@ -49,7 +49,7 @@ export class ListBasketsComponent implements OnInit {
 
   getTotalPrice(): void {
     this.basketService.getTotalPrice().subscribe({
-      next: (totalPrice: number) => { // Modifier le type de retour ici aussi
+      next: (totalPrice: number) => {
         this.totalPrice = totalPrice;
         // console.log("Total Price: ", totalPrice);
       },
@@ -64,7 +64,6 @@ export class ListBasketsComponent implements OnInit {
 
     this.basketService.addItemToBasket(basketItem).subscribe({
       next: (addedItem: BasketItem) => {
-        // console.log('Item added to basket:', addedItem);
         this.getBasketById();
         this.getTotalPrice();
       },
@@ -78,19 +77,17 @@ export class ListBasketsComponent implements OnInit {
   removeItemFromBasket(productID: number, quantity: number): void {
     const basketItem: BasketItem = this.createBasketItem(productID, quantity);
 
-    console.log('this.basket.basketItems.length :', this.basket.basketItems.length);
-    // console.log('basketItem :', basketItem);
+    // console.log('this.basket.basketItems.length :', this.basket.basketItems.length);
 
     this.basketService.removeItemFromBasket(basketItem).subscribe({
-    next: () => {
-      // console.log('Item removed from basket successfully');
-      this.getBasketById();
-      this.getTotalPrice();
-    },
-    error: (error) => {
-      console.error('Error removing item from basket:', error);
-    }
-  });
+      next: () => {
+        this.getBasketById();
+        this.getTotalPrice();
+      },
+      error: (error) => {
+        console.error('Error removing item from basket:', error);
+      }
+    });
   }
 
 
@@ -118,42 +115,9 @@ export class ListBasketsComponent implements OnInit {
   validateOrder(): void {
     this.router.navigate(['/orders']);
 
-    // Mettez ici la logique pour passer la commande
     console.log('Commande passée avec succès!');
 
-
-
   }
-
-
-
-  // removeItemFromBasket(productID: number, quantity: number): void {
-  //   const basketItem: BasketItem = this.createBasketItem(productID, quantity);
-
-  //   // Vérifier si la quantité du produit est égale à 1
-  //   const productIndex = this.basket.basketItems.findIndex((item: BasketItem) => item.product.idProd === productID);
-  //   if (productIndex !== -1 && this.basket.basketItems[productIndex].quantity === 1) {
-  //     const confirmation = window.confirm("Voulez-vous vraiment supprimer ce produit ?");
-  //     if (confirmation) {
-  //       this.removeItemFromBasketService(basketItem);
-  //     }
-  //   } else {
-  //     this.removeItemFromBasketService(basketItem);
-  //   }
-  // }
-
-  // private removeItemFromBasketService(basketItem: BasketItem): void {
-  //   this.basketService.removeItemFromBasket(basketItem).subscribe({
-  //     next: () => {
-  //       // console.log('Item removed from basket successfully');
-  //       this.getBasketById();
-  //       this.getTotalPrice();
-  //     },
-  //     error: (error) => {
-  //       console.error('Error removing item from basket:', error);
-  //     }
-  //   });
-  // }
 
 
 }

@@ -46,20 +46,20 @@ public class BasketItemService {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
-        // Vérifier si le produit existe déjà dans le panier
+        // Check if the product already exists in the basket
         BasketItem existingItem = basket.getBasketItems().stream()
                 .filter(item -> item.getProduct().getIdProd().equals(productId))
                 .findFirst()
                 .orElse(null);
 
         if (existingItem != null) {
-            // Mettre à jour la quantité de l'élément existant
+            // Update the quantity of the existing item
             existingItem.setQuantity(existingItem.getQuantity() + quantity);
-            // Mettre à jour l'élément dans la base de données
+            // Update the item in the database
             basketItemRepository.save(existingItem);
             return existingItem;
         } else {
-            // Ajouter un nouvel élément au panier
+            // Add a new item to the basket
             BasketItem newItem = new BasketItem();
             newItem.setProduct(product);
             newItem.setQuantity(quantity);
@@ -80,7 +80,7 @@ public class BasketItemService {
 
         Basket basket = basketService.loadBasketById(basketId);
 
-        // Recherche de l'élément correspondant dans le panier
+        // Search for the corresponding item in the basket
         BasketItem existingItem = basket.getBasketItems().stream()
                 .filter(item -> item.getProduct().getIdProd().equals(productId))
                 .findFirst()
@@ -90,22 +90,22 @@ public class BasketItemService {
         if (existingItem != null) {
             int updatedQuantity = existingItem.getQuantity() - quantity;
             if (updatedQuantity <= 0) {
-                // Si la quantité mise à jour est inférieure ou égale à zéro, supprimer l'élément du panier
+                // If the updated quantity is less than or equal to zero, remove the item from the basket
                 basket.getBasketItems().remove(existingItem);
-                // Supprimer l'élément de la base de données
+                // Delete the item from the database
                 basketItemRepository.delete(existingItem);
             } else {
-                // Mettre à jour la quantité de l'élément
+                // Update the quantity of the item
                 existingItem.setQuantity(updatedQuantity);
-                // Mettre à jour l'élément dans la base de données
+                // Update the item in the database
                 basketItemRepository.save(existingItem);
             }
         } else {
-            // L'élément n'existe pas dans le panier
+            // The item does not exist in the basket
             throw new RuntimeException("Item not found in the basket");
         }
 
-        // Mettre à jour le panier dans la base de données
+        // Update the basket in the database
         basketRepository.save(basket);
     }
 
@@ -113,14 +113,4 @@ public class BasketItemService {
         List<BasketItem> allBasketItems = basketItemRepository.findAll();
         basketItemRepository.deleteAll(allBasketItems);
     }
-
-    public int getTotalQuantity(Long basketId) {
-        Basket basket = basketService.loadBasketById(basketId);
-        return basket.getBasketItems().stream()
-                .mapToInt(BasketItem::getQuantity)
-                .sum();
-    }
-
-
 }
-

@@ -5,7 +5,7 @@
       <hr class="bg-dark text-dark">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
         <div class="col" *ngFor="let product of products">
-          <div class="card h-100"> <!-- Ajoutez la classe h-100 ici -->
+          <div class="card h-100">
             <img [src]="product.imageUrl" class="card-img-top" alt="{{ product.nameProd }}">
             <div class="card-body">
               <h5 class="card-title fs-3">{{ truncateText(product.nameProd, 40) }}</h5>
@@ -20,13 +20,13 @@
               <div *ngIf="authService.isAdmin()" class="row mt-3">
                 <div class="col-6">
                   <button class="btn btn-warning me-2 w-100" (click)="onEditProduct(product.idProd)">
-                    <i class="fas fa-edit"></i> <!-- Icône de modification -->
+                    <i class="fas fa-edit"></i> <!-- Edit icon -->
                   </button>
                 </div>
                 <div class="col-6">
                   <button class="btn btn-danger w-100" type="button"
                     (click)="onDeleteProduct(product.idProd, product.nameProd)">
-                    <i class="fas fa-trash-alt"></i> <!-- Icône de suppression -->
+                    <i class="fas fa-trash-alt"></i> <!-- Delete icon -->
                   </button>
                 </div>
               </div>

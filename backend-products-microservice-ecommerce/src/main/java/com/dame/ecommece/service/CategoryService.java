@@ -28,10 +28,10 @@ public class CategoryService {
     public Category updateCategory(Long id, Category updatedCategory) {
         Category existingCategory = getCategoryById(id);
         if (existingCategory != null) {
-            updatedCategory.setIdCat(id); // Ensure the category id matches the path variable id
+            updatedCategory.setIdCat(id);
             return categoryRepository.save(updatedCategory);
         } else {
-            return null; // Or throw an exception if the category doesn't exist
+            return null;
         }
     }
 

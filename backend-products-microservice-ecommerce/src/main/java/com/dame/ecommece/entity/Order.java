@@ -20,8 +20,8 @@ public class Order {
 //    @Column(columnDefinition = "int4")
     private OrderState state;
 
-    @Temporal(TemporalType.TIMESTAMP) // Annotation pour spécifier le type de la date
-    private Date date; // Champ de type Date pour stocker la date de la commande
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date;
 
     @ManyToOne
     @JoinColumn(name = "client_id")

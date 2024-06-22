@@ -10,8 +10,6 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.web.client.RestTemplate;
 
 import java.util.Date;
 
@@ -104,17 +102,6 @@ public class ECommeceApplication {
             Order order = new Order(1L, OrderState.CONFIRMED);
             orderService.addOrder(order);
 
-            // Add an item to the basket (uncomment to enable)
-            // Call the API to add an item to the basket
-            // String addItemUrl = "http://localhost:8080/api/basket/1/items?basketId=1&productId=2&quantity=3";
-            // restTemplate().postForObject(addItemUrl, null, String.class);
-
         }
     }
-
-
-//	@Bean
-//	public RestTemplate restTemplate() {
-//		return new RestTemplate();
-//	}
 }

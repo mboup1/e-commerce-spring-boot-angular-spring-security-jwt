@@ -4,7 +4,6 @@ import { Product } from '../../../interfaces/product';
 import { Router } from '@angular/router';
 import { BasketItem } from '../../../interfaces/basket-item';
 import { BasketService } from '../../../baskets/service/basket.service';
-import { Basket } from '../../../interfaces/basket';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
@@ -14,7 +13,6 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class ListProductsComponent {
   products: Product[] = [];
-  // basket!: Basket;
 
 
   constructor(
@@ -34,7 +32,6 @@ export class ListProductsComponent {
       {
         next: (products: Product[]) => {
           this.products = products;
-          // console.log("products : ", products);
         },
         error: (error) => {
           console.error('Error fetching products:', error);
@@ -46,7 +43,6 @@ export class ListProductsComponent {
 
   onDeleteProduct(productId: number, productName: string): void {
     console.log(productId)
-    // Implémentez votre logique pour supprimer le produit, par exemple :
     let conf = confirm(`Etes-vous sûr de vouloir supprimer ${productName} ?`);
     if (conf) {
       this.productService.deleteProduct(productId).subscribe(() => {
@@ -60,7 +56,6 @@ export class ListProductsComponent {
 
   onEditProduct(productId: number): void {
     console.log("productId : ", productId)
-    // Implémentez votre logique pour rediriger vers la page d'édition du produit, par exemple :
     this.router.navigate(['products/edit-product', productId]);
   }
 
@@ -74,9 +69,6 @@ export class ListProductsComponent {
       next: (addedItem: BasketItem) => {
         console.log('Item added to basket:', addedItem);
         this.router.navigate(['/basket']);
-
-        // this.getBasketById();
-        // this.getTotalPrice();
       },
       error: (error) => {
         console.error('Error adding item to basket:', error);
@@ -120,39 +112,6 @@ export class ListProductsComponent {
     const emptyStars = maxStars - fullStars - (halfStar ? 1 : 0);
     const stars = '★'.repeat(fullStars) + (halfStar ? '½' : '') + '☆'.repeat(emptyStars);
     return stars;
-  }
-
-
-  // getBasketById(): void {
-  //   this.basketService.getBasketById(1).subscribe(
-  //     {
-  //       next: (basket: Basket) => {
-  //         this.basket = basket;
-  //         // console.log("basket : ", basket);
-  //       },
-  //       error: (error) => {
-  //         console.error('Error fetching basket:', error);
-  //       }
-  //     }
-  //   );
-  // }
-
-  // getTotalPrice(): void {
-  //   this.basketService.getTotalPrice().subscribe({
-  //     next: (totalPrice: number) => { // Modifier le type de retour ici aussi
-  //       this.totalPrice = totalPrice;
-  //       // console.log("Total Price: ", totalPrice);
-  //     },
-  //     error: (error) => {
-  //       console.error('Error fetching total price:', error);
-  //     }
-  //   });
-  // }
-
-
-  getProduct(productId: number): void {
-    // Implémentez votre logique pour afficher les détails du produit, par exemple :
-    // this.router.navigate(['/details-product', productId]);
   }
 
 }

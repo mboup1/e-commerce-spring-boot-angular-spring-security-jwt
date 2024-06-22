@@ -9,7 +9,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/categories")
-//@CrossOrigin(origins = "http://localhost:4200")
 public class CategoryController {
 
     @Autowired
@@ -34,10 +33,10 @@ public class CategoryController {
     public Category updateCategory(@PathVariable Long id, @RequestBody Category category) {
         Category existingCategory = categoryService.getCategoryById(id);
         if (existingCategory != null) {
-            category.setIdCat(id); // Ensure the category id matches the path variable id
+            category.setIdCat(id);
             return categoryService.updateCategory(id, category);
         } else {
-            return null; // Or throw an exception if the category doesn't exist
+            return null;
         }
     }
 
