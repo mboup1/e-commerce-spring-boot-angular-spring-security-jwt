@@ -19,6 +19,7 @@ import { TokenInterceptor } from './services/token.interceptor';
 import { PipesModule } from './pipes/pipes.module';
 import { CapitalizeFirstPipe } from './pipes/capitalize-first.pipe';
 import { RegisterComponent } from './register/register.component';
+import { VerifEmailComponent } from './verif-email/verif-email.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { RegisterComponent } from './register/register.component';
     LoginComponent,
     ForbiddenComponent,
     RegisterComponent,
+    VerifEmailComponent,
 
   ],
   imports: [

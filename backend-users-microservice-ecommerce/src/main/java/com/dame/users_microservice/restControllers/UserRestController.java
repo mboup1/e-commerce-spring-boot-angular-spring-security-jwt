@@ -36,10 +36,10 @@ public class UserRestController {
 	}
 
 
-//	@GetMapping("/verifyEmail/{token}")
-//	public User verifyEmail(@PathVariable("token") String token){
-//		return userService.validateToken(token);
-//	}
+	@GetMapping("/verifyEmail/{token}")
+	public User verifyEmail(@PathVariable("token") String token){
+		return userService.validateToken(token);
+	}
 
 
 }

@@ -6,13 +6,13 @@ import com.dame.users_microservice.entities.User;
 import com.dame.users_microservice.repository.RoleRepository;
 import com.dame.users_microservice.repository.UserRepository;
 import com.dame.users_microservice.service.exceptions.EmailAlreadyExistsException;
-//import com.dame.users_microservice.service.exceptions.InvalidTokenException;
+import com.dame.users_microservice.service.exceptions.InvalidTokenException;
 import com.dame.users_microservice.service.register.RegistrationRequest;
 
-//import com.dame.users_microservice.service.exceptions.ExpiredTokenException;
-//import com.dame.users_microservice.service.register.VerificationToken;
-//import com.dame.users_microservice.service.register.VerificationTokenRepository;
-//import com.dame.users_microservice.util.EmailSender;
+import com.dame.users_microservice.service.exceptions.ExpiredTokenException;
+import com.dame.users_microservice.service.register.VerificationToken;
+import com.dame.users_microservice.service.register.VerificationTokenRepository;
+import com.dame.users_microservice.util.EmailSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -33,11 +33,11 @@ public class UserService {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-//	@Autowired
-//	VerificationTokenRepository verificationTokenRepo;
-//
-//	@Autowired
-//	EmailSender emailSender;
+	@Autowired
+	VerificationTokenRepository verificationTokenRepo;
+
+	@Autowired
+	EmailSender emailSender;
 
 	public User saveUser(User user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
@@ -82,13 +82,13 @@ public class UserService {
 		newUser.setRoles(roles);
 
 		//génére le code secret
-//		String code = this.generateCode();
+		String code = this.generateCode();
 
-//		VerificationToken token = new VerificationToken(code, newUser);
-//		verificationTokenRepo.save(token);
-//
-//		//envoyer le code par email à l'utilisateur
-//		sendEmailUser(newUser,token.getToken());
+		VerificationToken token = new VerificationToken(code, newUser);
+		verificationTokenRepo.save(token);
+
+		//envoyer le code par email à l'utilisateur
+		sendEmailUser(newUser,token.getToken());
 
 
 		return userRep.save(newUser);
@@ -102,31 +102,31 @@ public class UserService {
 
 	}
 
-//	public void sendEmailUser(User u, String code) {
-//		String emailBody ="Bonjour "+ "<h1>"+u.getUsername() +"</h1>" +
-//				" Votre code de validation est "+"<h1>"+code+"</h1>";
-//
-//		emailSender.sendEmail(u.getEmail(), emailBody);
-//	}
-//
-//	public User validateToken(String code) {
-//		VerificationToken token = verificationTokenRepo.findByToken(code);
-//
-//		if(token == null){
-//			throw new InvalidTokenException("Invalid Token !!!!!!!");
-//		}
-//
-//		User user = token.getUser();
-//
-//		Calendar calendar = Calendar.getInstance();
-//
-//		if ((token.getExpirationTime().getTime() - calendar.getTime().getTime()) <= 0){
-//			verificationTokenRepo.delete(token);
-//			throw new ExpiredTokenException("expired Token");
-//		}
-//
-//		user.setEnabled(true);
-//		userRep.save(user);
-//		return user;
-//	}
+	public void sendEmailUser(User u, String code) {
+		String emailBody ="Bonjour "+ "<h1>"+u.getUsername() +"</h1>" +
+				" Votre code de validation est "+"<h1>"+code+"</h1>";
+
+		emailSender.sendEmail(u.getEmail(), emailBody);
+	}
+
+	public User validateToken(String code) {
+		VerificationToken token = verificationTokenRepo.findByToken(code);
+
+		if(token == null){
+			throw new InvalidTokenException("Invalid Token !!!!!!!");
+		}
+
+		User user = token.getUser();
+
+		Calendar calendar = Calendar.getInstance();
+
+		if ((token.getExpirationTime().getTime() - calendar.getTime().getTime()) <= 0){
+			verificationTokenRepo.delete(token);
+			throw new ExpiredTokenException("expired Token");
+		}
+
+		user.setEnabled(true);
+		userRep.save(user);
+		return user;
+	}
 }

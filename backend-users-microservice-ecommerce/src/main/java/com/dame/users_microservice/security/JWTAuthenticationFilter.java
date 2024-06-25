@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -18,9 +19,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.io.PrintWriter;
+import java.util.*;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -63,5 +63,24 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 				.sign(Algorithm.HMAC256(SecParams.SECRET));
 
 		response.addHeader("Authorization", SecParams.PREFIX + jwt);
+	}
+
+	@Override
+	protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
+											  AuthenticationException failed) throws IOException, ServletException {
+		if (failed instanceof DisabledException) {
+			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+			response.setContentType("application/json");
+			Map<String, Object> data = new HashMap<>();
+			data.put("errorCause", "disabled");
+			data.put("message", "L'utilisateur est désactivé !");
+			ObjectMapper objectMapper = new ObjectMapper();
+			String json = objectMapper.writeValueAsString(data);
+			PrintWriter writer = response.getWriter();
+			writer.println(json);
+			writer.flush();
+		} else {
+			super.unsuccessfulAuthentication(request, response, failed);
+		}
 	}
 }

@@ -54,6 +54,8 @@ export class LoginComponent implements OnInit {
       },
       error: (err: any) => {
         this.err = 1;
+        if (err.error.errorCause=='disabled')
+          this.message="Utilisateur désactivé, Veuillez contacter votre Administrateur";
       }
     });
   }

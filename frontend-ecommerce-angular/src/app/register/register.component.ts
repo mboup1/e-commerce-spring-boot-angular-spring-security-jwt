@@ -41,8 +41,9 @@ export class RegisterComponent {
 
   this.authService.registerUser(this.user).subscribe({
     next: (res) => {
-      alert("Veuillez confirmer votre email");
-      // this.router.navigate(["/verifEmail", this.user.email]);
+      this.authService.setRegistredUser(this.user);
+      // alert("Veuillez confirmer votre email");
+      this.router.navigate(["/verifEmail", this.user.email]);
     },
     error: (err: any) => {
       if (err.status === 400) {

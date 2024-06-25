@@ -1,0 +1,29 @@
+<div class="container mt-5">
+    <div class="row justify-content-md-center">
+      <div class="col-md-4">
+        <div class="alert alert-danger" *ngIf="err != ''">
+          <strong>{{err}}</strong>
+        </div>
+        <form [formGroup]="verifyForm">
+          <div class="txt_field">
+            <label>Veuillez entrer le code envoyé par mail</label>
+            <input
+              type="text"
+              formControlName="code"
+              class="form-control"
+              placeholder="code de confirmation"
+            />
+          </div>
+          <div *ngIf="verifyForm.get('code')?.invalid && (verifyForm.get('code')?.touched || verifyForm.get('code')?.dirty)" class="text-danger">
+            <span *ngIf="verifyForm.get('code')?.hasError('required')">
+              Le code est obligatoire.
+            </span>
+          </div>
+          <button type="button" class="btn btn-success mt-3" [disabled]="verifyForm.invalid" (click)="onValidateEmail()">
+            S'inscrire
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
