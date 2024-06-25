@@ -34,7 +34,7 @@ export class ListProductsComponent {
           this.products = products;
         },
         error: (error) => {
-          console.error('Error fetching products:', error);
+          // console.error('Error fetching products:', error);
         }
       }
     );
@@ -43,13 +43,12 @@ export class ListProductsComponent {
 
   onDeleteProduct(productId: number, productName: string): void {
     console.log(productId)
-    let conf = confirm(`Etes-vous sûr de vouloir supprimer ${productName} ?`);
+    let conf = confirm(`Are you sure you want to delete ${productName} ?`);
     if (conf) {
       this.productService.deleteProduct(productId).subscribe(() => {
         this.products = this.products.filter(product => product.idProd !== productId);
-        console.log("Product supprimé avec succès!");
       }, error => {
-        console.error("Erreur lors de la suppression du produit:", error);
+        console.error("Error deleting product : ", error);
       });
     }
   }

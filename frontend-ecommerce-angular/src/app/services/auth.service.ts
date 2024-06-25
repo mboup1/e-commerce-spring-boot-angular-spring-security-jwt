@@ -37,7 +37,7 @@ export class AuthService {
     localStorage.removeItem('jwt');
     localStorage.removeItem('isloggedIn');
     // this.basketService.clearAllBasketItems().subscribe();
-    this.router.navigate(['/products']);
+    this.router.navigate(['/login']);
   }
 
   // Token management methods
@@ -79,5 +79,10 @@ export class AuthService {
 
   setLoggedUserFromLocalStorage() {
     this.isloggedIn = true;
+  }
+
+  registerUser(user: User) {
+    return this.http.post<User>(this.apiURL + '/register', user,
+      { observe: 'response' });
   }
 }

@@ -1,8 +1,8 @@
 export class User {
   username!: string;
   password!: string;
-  // email!: string;
-  // enabled!: boolean;
+  email!: string;
+  enabled!: boolean;
   roles!: string[];
 
 

@@ -20,9 +20,20 @@ public class User {
 	private String username;
 	private String password;
 	private Boolean enabled;
-	
-    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	private String email;
+
+
+	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name="user_role",joinColumns = @JoinColumn(name="user_id") , 
 			   inverseJoinColumns = @JoinColumn(name="role_id")) 
-	private List<Role> roles; 
+	private List<Role> roles;
+
+
+//	public User(Long user_id, String username, String password, Boolean enabled, String email) {
+//		this.user_id = user_id;
+//		this.username = username;
+//		this.password = password;
+//		this.enabled = enabled;
+//		this.email = email;
+//	}
 }

@@ -1,23 +1,27 @@
 <div class="row">
   <div class="col">
-    <div class="bg-white shadow p-4 rounded">
+    <div class="bg-white shadow p-1 rounded">
       <h1 class="display-6 text-dark text-center">Liste des produits</h1>
       <hr class="bg-dark text-dark">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
         <div class="col" *ngFor="let product of products">
           <div class="card h-100">
-            <img [src]="product.imageUrl" class="card-img-top" alt="{{ product.nameProd }}">
-            <div class="card-body">
-              <h5 class="card-title fs-3">{{ truncateText(product.nameProd, 40) }}</h5>
+            <div class="no-margin">
+                          <img [src]="product.imageUrl" class="card-img-top " alt="{{ product.nameProd }}">
 
-              <p class="card-text text-warning fs-4">{{ generateStarRating(product.rating) }}</p>
+            </div>
+
+            <div class="card-body">
+              <h5 class="card-title fs-4 no-margin">{{ truncateText(product.nameProd, 40) }}</h5>
+
+              <p class="card-text text-warning fs-5 no-margin ">{{ generateStarRating(product.rating) }}</p>
               <!-- <p class="card-text">{{ product.category.nameCat }}</p> -->
-              <p class="card-text fs-2">{{ product.price*1.2 | spaceSeparated }}€</p>
+              <p class="card-text fs-2 no-margin">{{ product.price*1.2 | spaceSeparated }}€</p>
               <button class="btn btn-success me-2 w-100" (click)="addItemToBasket(product.idProd, 1)">Ajouter au panier
                 <i class="fas fa-cart-plus"></i>
               </button>
 
-              <div *ngIf="authService.isAdmin()" class="row mt-3">
+              <div *ngIf="authService.isAdmin()" class="row mt-2">
                 <div class="col-6">
                   <button class="btn btn-warning me-2 w-100" (click)="onEditProduct(product.idProd)">
                     <i class="fas fa-edit"></i> <!-- Edit icon -->

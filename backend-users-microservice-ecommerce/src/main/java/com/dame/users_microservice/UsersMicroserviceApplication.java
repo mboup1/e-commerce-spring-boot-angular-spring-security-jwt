@@ -28,7 +28,7 @@ public class UsersMicroserviceApplication {
 //
 //		//ajouter les users
 //	   userService.saveUser(new User(null,"admin","123",true,null));
-//	   userService.saveUser(new User(null,"dame","123",true,null));
+//	   userService.saveUser(new User(null,"dame","123",true,"dame@dame.com"));
 //	   userService.saveUser(new User(null,"abdou","123",true,null));
 //
 //		//ajouter les rôles aux users

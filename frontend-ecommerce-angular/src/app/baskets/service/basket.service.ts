@@ -24,20 +24,9 @@ export class BasketService {
     return this.http.delete<Basket>(`${API_BASE_URL}/baskets/${id}`);
   }
 
-
   getBasketById(id: number): Observable<Basket> {
     return this.http.get<Basket>(`${API_BASE_URL}/basket/${id}`);
   }
-
-  // getBasketById(id: number): Observable<Basket> {
-  //   let jwt = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW1lIiwicm9sZXMiOlsiQURNSU4iLCJVU0VSIl0sImV4cCI6MTcxOTU4OTQ0M30.162G_IqEXMsgC6rQyF6JPu46zoOHkuwbj1eyxpC8C3Q";
-  //   // let jwt = this.authService.getToken();
-  //   jwt = "Bearer " + jwt;
-  //   let httpHeaders = new HttpHeaders({ "Authorization": jwt })
-
-  //   return this.http.get<Basket>(`${API_BASE_URL}/basket/${id}`, { headers: httpHeaders });
-  // }
-
 
 
   updateBasket(basket: Basket): Observable<Basket> {

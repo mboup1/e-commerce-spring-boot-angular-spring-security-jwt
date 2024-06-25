@@ -36,7 +36,7 @@ export class ListBasketsComponent implements OnInit {
           this.totalPrice = this.basket.totalPrice;
           this.totalItems = this.basket.totalItems;
 
-          console.log("totalItems in ListBasketsComponent : ", this.totalItems);
+          // console.log("totalItems in ListBasketsComponent : ", this.totalItems);
         },
         error: (error) => {
           console.error('Error fetching basket:', error);
@@ -77,7 +77,7 @@ export class ListBasketsComponent implements OnInit {
   removeItemFromBasket(productID: number, quantity: number): void {
     const basketItem: BasketItem = this.createBasketItem(productID, quantity);
 
-    // console.log('this.basket.basketItems.length :', this.basket.basketItems.length);
+    console.log('this.basket.basketItems.length :', this.basket.basketItems.length);
 
     this.basketService.removeItemFromBasket(basketItem).subscribe({
       next: () => {
@@ -115,7 +115,7 @@ export class ListBasketsComponent implements OnInit {
   validateOrder(): void {
     this.router.navigate(['/orders']);
 
-    console.log('Commande passée avec succès!');
+    console.log('Order placed successfully !');
 
   }
 

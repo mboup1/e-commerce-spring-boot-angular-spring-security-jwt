@@ -19,6 +19,7 @@
           <label for="password">Mot de passe :</label>
           <input type="password" id="password" class="form-control" formControlName="password">
         </div>
+        <p>Vous n'avez pas un compte? <a routerLink="/register">S'inscrire </a></p>
 
         <div class="d-flex">
           <button class="btn btn-success mx-auto" type="submit" [disabled]="!newUserForm.valid">

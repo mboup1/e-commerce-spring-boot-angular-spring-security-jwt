@@ -43,11 +43,11 @@ public class SecurityConfig {
 						// Consulter un produit par son id
 						.requestMatchers(HttpMethod.GET, "/api/**").hasAnyAuthority("ADMIN", "USER")
 						// Ajouter un nouveau produit
-						.requestMatchers(HttpMethod.POST, "/api/**").hasAuthority("ADMIN")
+						.requestMatchers(HttpMethod.POST, "/api/**").hasAnyAuthority("ADMIN", "USER")
 						// Modifier un produit
 						.requestMatchers(HttpMethod.PUT, "/api/**").hasAuthority("ADMIN")
 						// Supprimer un produit
-						.requestMatchers(HttpMethod.DELETE, "/api/**").hasAuthority("ADMIN")
+						.requestMatchers(HttpMethod.DELETE, "/api/**").hasAnyAuthority("ADMIN", "USER")
 						.anyRequest().authenticated())
 				.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 

@@ -42,7 +42,7 @@ public class BasketItemService {
 
         Basket basket = basketService.loadBasketById(basketId);
         Optional<Order> order = orderService.getOrderById(1L);
-        System.out.println("Order : " + order);
+
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 

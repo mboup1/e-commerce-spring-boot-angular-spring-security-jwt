@@ -16,13 +16,19 @@ import { CategoriesModule } from './categories/categories.module';
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './errors/forbidden/forbidden.component';
 import { TokenInterceptor } from './services/token.interceptor';
+import { PipesModule } from './pipes/pipes.module';
+import { CapitalizeFirstPipe } from './pipes/capitalize-first.pipe';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CapitalizeFirstPipe,
     ReplacePipe,
+
     LoginComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    RegisterComponent,
 
   ],
   imports: [
@@ -30,6 +36,7 @@ import { TokenInterceptor } from './services/token.interceptor';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    PipesModule,
     ClientsModule,
     ProductsModule,
     OrdersModule,

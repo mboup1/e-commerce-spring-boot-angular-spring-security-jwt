@@ -23,7 +23,7 @@
       <ul class="navbar-nav ms-auto">
 
 
-        <li><a class="nav-link">{{ authService.loggedUser }}</a></li>
+        <li><a class="nav-link">{{ authService.loggedUser | uppercase }}</a></li>
 
         <li (click)="reloadBasket()">
           <a class="navbar-brand page-link" [routerLink]="['/basket']">

@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { BasketService } from '../baskets/service/basket.service';
 import { Basket } from '../interfaces/basket';
@@ -36,7 +37,9 @@ export class HeaderComponent implements OnInit {
     } else {
       this.authService.setLoggedUserFromLocalStorage();
     }
+
     this.getBasketById();
+
 
   }
 
@@ -44,10 +47,10 @@ export class HeaderComponent implements OnInit {
     this.basketService.getBasketById(1).subscribe({
       next: (basket: Basket) => {
         this.basket = basket;
-        console.log('Basket:', this.basket);
+        // console.log('Basket:', this.basket);
       },
-      error: (error) => {
-        console.error('Error fetching basket:', error);
+      error: (error:HttpErrorResponse) => {
+        // console.error('Error fetching basket:', error.message);
       }
     });
   }
@@ -57,8 +60,8 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogout(): void {
+    // this.clearAllBasketItems();
     this.authService.logout();
-    this.clearAllBasketItems();
   }
 
   clearAllBasketItems(): void {
@@ -68,7 +71,7 @@ export class HeaderComponent implements OnInit {
         this.reloadBasket();
       },
       error: (error) => {
-        console.error('Error clearing basket items:', error);
+        // console.error('Error clearing basket items:', error);
       }
     });
   }
