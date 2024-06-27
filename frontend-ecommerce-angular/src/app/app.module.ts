@@ -21,6 +21,10 @@ import { CapitalizeFirstPipe } from './pipes/capitalize-first.pipe';
 import { RegisterComponent } from './register/register.component';
 import { VerifEmailComponent } from './verif-email/verif-email.component';
 
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +50,8 @@ import { VerifEmailComponent } from './verif-email/verif-email.component';
     BasketItemsModule,
     CategoriesModule,
     HeaderModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
 
   ],
   providers: [

@@ -22,7 +22,7 @@ import java.util.*;
 
 @Transactional
 @Service
-public class UserService {
+public class UserServiceImpl {
 
 	@Autowired
 	private UserRepository userRep;

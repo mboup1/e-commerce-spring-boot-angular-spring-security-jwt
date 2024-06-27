@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../interfaces/User';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-verif-email',
@@ -16,9 +17,11 @@ export class VerifEmailComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
+
   ) { }
 
   ngOnInit(): void {
@@ -36,7 +39,8 @@ export class VerifEmailComponent implements OnInit {
     const code = this.verifyForm.get('code')?.value;
     this.authService.validateEmail(code).subscribe({
       next: (res) => {
-        alert('Login successful');
+        this.toastr.success('Connexion réussie !', 'Succès');
+
         this.authService.login(this.user).subscribe({
           next: (data) => {
             let jwToken = data.headers.get('Authorization')!;
@@ -49,10 +53,10 @@ export class VerifEmailComponent implements OnInit {
         });
       },
       error: (err: any) => {
-        if ((err.error.errorCode == "INVALID_TOKEN")) 
+        if ((err.error.errorCode == "INVALID_TOKEN"))
             this.err = "Votre code n'est pas valide !";
-    
-        if ((err.error.errorCode == "EXPIRED_TOKEN")) 
+
+        if ((err.error.errorCode == "EXPIRED_TOKEN"))
             this.err = "Votre code a expiré !";
       }
       // error: (err: any) => {
