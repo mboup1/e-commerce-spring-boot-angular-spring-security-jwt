@@ -83,6 +83,7 @@ export class ListBasketsComponent implements OnInit {
       next: () => {
         this.getBasketById();
         this.getTotalPrice();
+        
       },
       error: (error) => {
         console.error('Error removing item from basket:', error);

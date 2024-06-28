@@ -4,6 +4,7 @@ import { BasketService } from '../baskets/service/basket.service';
 import { Basket } from '../interfaces/basket';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,9 @@ export class HeaderComponent implements OnInit {
   constructor(
     private basketService: BasketService,
     private router: Router,
-    public authService: AuthService
+    public authService: AuthService,
+    private toastr: ToastrService
+
   ) { }
 
   ngOnInit(): void {
@@ -60,6 +63,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogout(): void {
+    this.toastr.success('Déconnexion réussie !');
     // this.clearAllBasketItems();
     this.authService.logout();
   }

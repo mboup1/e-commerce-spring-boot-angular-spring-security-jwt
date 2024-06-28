@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { User } from '../interfaces/User';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -24,7 +25,9 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
+
   ) { }
 
   ngOnInit(): void {
@@ -48,8 +51,9 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.user).subscribe({
       next: (data) => {
         let jwToken = data.headers.get('Authorization')!;
-        // console.log(jwToken)
+
         this.authService.saveToken(jwToken);
+        this.toastr.success('Connexion réussie !');
         this.router.navigate(['/']);
       },
       error: (err: any) => {
