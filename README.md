@@ -32,6 +32,10 @@ spring.main.allow-circular-references=true
 
 ![Order](frontend-ecommerce-angular/src/app/resources/Order.jpg)
 
+## Logout page
+
+![Logout](frontend-ecommerce-angular/src/app/resources/Logoutpage-e-commerce-dame.jpg)
+
 ```markdown
 ## Prerequisites
 
