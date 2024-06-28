@@ -28,7 +28,7 @@ spring.main.allow-circular-references=true
 
 ![Basket](frontend-ecommerce-angular/src/app/resources/Basket.jpg)
 
-## order management
+## Order management
 
 ![Order](frontend-ecommerce-angular/src/app/resources/Order.jpg)
 
@@ -43,6 +43,8 @@ spring.main.allow-circular-references=true
 - Angular CLI
 - Java Development Kit (JDK)
 - Spring Boot
+- Spring Security
+- JSON Web Token (JWT)
 ```
 
 ````markdown

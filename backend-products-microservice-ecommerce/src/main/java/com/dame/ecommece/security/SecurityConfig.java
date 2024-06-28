@@ -37,7 +37,7 @@ public class SecurityConfig {
 				}).disable()
 				.csrf(csrf -> csrf.disable())
 				.authorizeRequests(authorizeRequests -> authorizeRequests
-						// Consulter tous les produits
+//						.requestMatchers(HttpMethod.GET, "/api/products").permitAll()
 						.requestMatchers("/api/basket/1").hasAnyAuthority("ADMIN", "USER")
 						.requestMatchers("/api/products/**").hasAnyAuthority("ADMIN", "USER")
 						// Consulter un produit par son id
