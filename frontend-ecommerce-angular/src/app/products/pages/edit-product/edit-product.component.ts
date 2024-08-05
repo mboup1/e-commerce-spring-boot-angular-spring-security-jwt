@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-edit-product',
   templateUrl: './edit-product.component.html',
-  styleUrl: './edit-product.component.css'
+  styleUrls: ['./edit-product.component.css']
 })
 export class EditProductComponent implements OnInit {
   editProductForm!: FormGroup;
@@ -37,25 +37,25 @@ export class EditProductComponent implements OnInit {
       nameProd: new FormControl('', Validators.required),
       imageUrl: new FormControl('', Validators.required),
       price: new FormControl('', [Validators.required, Validators.min(0)]),
-      rating: new FormControl('', [Validators.required, Validators.min(0)]),
+      rating: new FormControl('', [Validators.required, Validators.min(0), Validators.max(5)]),
       categoryId: new FormControl('', Validators.required)
     });
   }
 
   loadCategories(): void {
-    this.categorieService.getAllCategories().subscribe(
-      (categories: Category[]) => {
+    this.categorieService.getAllCategories().subscribe({
+      next: (categories: Category[]) => {
         this.categories = categories;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching categories:', error);
       }
-    );
+    });
   }
 
   loadProduct(): void {
-    this.productService.getProductById(this.productId).subscribe(
-      (product: Product) => {
+    this.productService.getProductById(this.productId).subscribe({
+      next: (product: Product) => {
         this.editProductForm.patchValue({
           nameProd: product.nameProd,
           imageUrl: product.imageUrl,
@@ -64,10 +64,10 @@ export class EditProductComponent implements OnInit {
           categoryId: product.category.idCat
         });
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching product:', error);
       }
-    );
+    });
   }
 
   updateProduct(): void {
@@ -86,25 +86,24 @@ export class EditProductComponent implements OnInit {
         }
       };
 
-      this.productService.updateProduct(updatedProduct).subscribe(
-        (response: Product) => {
+      this.productService.updateProduct(updatedProduct).subscribe({
+        next: (response: Product) => {
           this.successMessage = 'Le produit a été mis à jour avec succès !';
           this.errorMessage = null;
           setTimeout(() => {
             this.router.navigate(['/products']);
           }, 2000);
         },
-        (error) => {
+        error: (error) => {
           this.errorMessage = 'Une erreur s\'est produite lors de la mise à jour du produit.';
           this.successMessage = null;
           console.error('Error updating product:', error);
         }
-      );
+      });
     }
   }
 
   cancelUpdate(): void {
-    // Naviguer vers la liste des produits
     this.router.navigate(['/products']);
   }
 }

@@ -9,6 +9,7 @@ public class BasketItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private int quantity;
 
     @ManyToOne
     @JoinColumn(name = "basket_id")
@@ -19,7 +20,6 @@ public class BasketItem {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    private int quantity;
 
     @ManyToOne
     @JoinColumn(name = "order_id")

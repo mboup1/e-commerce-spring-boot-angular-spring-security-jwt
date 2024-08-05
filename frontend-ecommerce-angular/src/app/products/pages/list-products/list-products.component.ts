@@ -42,7 +42,7 @@ export class ListProductsComponent {
 
 
   onDeleteProduct(productId: number, productName: string): void {
-    console.log(productId)
+
     let conf = confirm(`Are you sure you want to delete ${productName} ?`);
     if (conf) {
       this.productService.deleteProduct(productId).subscribe(() => {

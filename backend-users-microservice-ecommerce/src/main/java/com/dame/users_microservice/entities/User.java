@@ -29,11 +29,11 @@ public class User {
 	private List<Role> roles;
 
 
-//	public User(Long user_id, String username, String password, Boolean enabled, String email) {
-//		this.user_id = user_id;
-//		this.username = username;
-//		this.password = password;
-//		this.enabled = enabled;
-//		this.email = email;
-//	}
+	public User(Long user_id, String username, String password, Boolean enabled, String email) {
+		this.user_id = user_id;
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+		this.email = email;
+	}
 }

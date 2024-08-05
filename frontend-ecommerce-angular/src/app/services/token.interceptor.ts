@@ -15,7 +15,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const exclude_array = ["/login", "/register", '/verifyEmail', '/products'];
+    const exclude_array = ["/login", "/register", '/verifyEmail'];
 
     if (!exclude_array.some(url => request.url.includes(url))) {
       let jwt = this.authService.getToken();
